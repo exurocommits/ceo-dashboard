@@ -4,106 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Guru - AI Research Assistant for Academics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reveals.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Merriweather', Georgia, serif;
-            background: #fafafa;
-            color: #1a202c;
-            line-height: 1.8;
-        }
+        body { font-family: var(--font-display); background: var(--bg); color: var(--ink); line-height: 1.8; }
         .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
         
-        /* Header - Academic Style */
-        header { background: #fff; padding: 30px 0; border-bottom: 1px solid #e2e8f0; }
+        #blobCv { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+        
+        header { background: var(--white); padding: 30px 0; border-bottom: 1px solid rgba(0,0,0,0.08); position: relative; z-index: 10; }
         .nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600; color: #2c5282; }
-        .nav-links a { color: #4a5568; text-decoration: none; margin-left: 30px; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
-        .nav-links a:hover { color: #2c5282; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--plum); }
+        .nav-links a { color: var(--mid); text-decoration: none; margin-left: 30px; font-family: var(--font-mono); font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--plum); }
         
-        /* Hero - Clean Academic */
-        .hero { padding: 120px 0; background: #fff; }
-        .hero h1 { font-size: 3rem; font-weight: 400; margin-bottom: 25px; color: #1a202c; }
-        .hero h1 em { color: #2c5282; font-style: italic; }
-        .hero-sub { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: #718096; margin-bottom: 50px; font-weight: 300; }
-        .hero-cta { display: flex; gap: 20px; }
-        .btn-primary { background: #2c5282; color: #fff; padding: 16px 40px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; display: inline-block; }
-        .btn-secondary { background: #fff; color: #2c5282; padding: 16px 40px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; border: 1px solid #2c5282; display: inline-block; }
+        .hero { padding: 140px 0; background: var(--white); position: relative; z-index: 10; }
+        .hero h1 { font-family: var(--font-serif); font-size: 3.5rem; font-weight: 400; margin-bottom: 24px; color: var(--ink); font-style: italic; }
+        .hero h1 em { color: var(--plum); font-style: italic; }
+        .hero-sub { font-family: var(--font-mono); font-size: 1.2rem; color: var(--mid); margin-bottom: 48px; font-weight: 300; }
+        .hero-cta { display: flex; gap: 16px; }
+        .btn-primary { background: var(--plum); color: var(--white); padding: 16px 32px; border-radius: var(--r-md); text-decoration: none; font-family: var(--font-mono); font-weight: 500; display: inline-block; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123, 63, 181, 0.3); }
+        .btn-secondary { background: var(--white); color: var(--plum); padding: 16px 32px; border-radius: var(--r-md); text-decoration: none; font-family: var(--font-mono); font-weight: 500; border: 1px solid var(--plum); display: inline-block; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-secondary:hover { background: var(--plum); color: var(--white); }
         
-        /* Citation Preview */
-        .citation-preview { background: #f7fafc; padding: 40px; margin-top: 60px; border-radius: 8px; border-left: 4px solid #2c5282; }
-        .citation-preview h3 { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #718096; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .citation { font-size: 1rem; color: #4a5568; margin-bottom: 15px; padding-left: 20px; }
-        .citation span { color: #2c5282; }
+        .citation-preview { background: var(--bg); padding: 40px; margin-top: 60px; border-radius: var(--r-lg); border-left: 4px solid var(--plum); }
+        .citation-preview h3 { font-family: var(--font-mono); font-size: 0.85rem; color: var(--light); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .citation { font-family: var(--font-serif); font-size: 1rem; color: var(--mid); margin-bottom: 16px; padding-left: 20px; font-style: italic; }
+        .citation span { color: var(--plum); font-weight: 600; font-style: normal; }
         
-        /* Features - Academic Grid */
-        .features { padding: 100px 0; background: #fafafa; }
+        .features { padding: 120px 0; position: relative; z-index: 10; }
         .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; font-weight: 400; margin-bottom: 15px; }
-        .section-title p { font-family: 'Inter', sans-serif; color: #718096; font-size: 1.1rem; font-weight: 300; }
-        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+        .section-title h2 { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 400; margin-bottom: 16px; color: var(--ink); font-style: italic; }
+        .section-title p { font-family: var(--font-mono); color: var(--mid); font-size: 1.05rem; font-weight: 300; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
         .feature { }
         .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
-        .feature h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #1a202c; }
-        .feature p { color: #4a5568; font-size: 1.05rem; }
+        .feature h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+        .feature p { color: var(--mid); font-size: 1rem; line-height: 1.8; }
         
-        /* Export Formats */
-        .export-formats { padding: 80px 0; background: #fff; }
-        .formats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center; }
-        .format { padding: 30px; background: #f7fafc; border-radius: 8px; }
-        .format-icon { font-size: 2rem; margin-bottom: 15px; }
-        .format-name { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #4a5568; font-weight: 500; }
+        .export-formats { padding: 100px 0; background: var(--white); position: relative; z-index: 10; }
+        .formats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; text-align: center; }
+        .format { padding: 28px; background: var(--bg); border-radius: var(--r-md); transition: all var(--dur-mid) var(--ease-out); }
+        .format:hover { transform: translateY(-4px); }
+        .format-icon { font-size: 1.8rem; margin-bottom: 12px; }
+        .format-name { font-family: var(--font-mono); font-size: 0.85rem; color: var(--mid); font-weight: 500; }
         
-        /* Pricing - Simple Academic */
-        .pricing { padding: 100px 0; background: #fafafa; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .pricing-card { background: #fff; padding: 50px 40px; border-radius: 8px; border: 1px solid #e2e8f0; }
-        .pricing-card h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; }
-        .price { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #2c5282; margin: 25px 0; }
-        .price span { font-size: 1rem; color: #a0aec0; font-weight: 400; }
-        .pricing-card ul { list-style: none; margin: 30px 0; }
-        .pricing-card li { padding: 15px 0; border-bottom: 1px solid #e2e8f0; color: #4a5568; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
-        .pricing-card li::before { content: "✓ "; color: #2c5282; font-weight: 600; }
-        .btn-pricing { background: #2c5282; color: #fff; padding: 14px 30px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; display: block; text-align: center; }
+        .testimonial { padding: 120px 0; background: var(--white); text-align: center; position: relative; z-index: 10; }
+        .testimonial blockquote { font-family: var(--font-serif); font-size: 1.6rem; font-style: italic; color: var(--mid); max-width: 700px; margin: 0 auto 30px; line-height: 1.6; }
+        .testimonial cite { font-family: var(--font-mono); font-size: 0.95rem; color: var(--light); font-style: normal; }
+        .testimonial cite span { color: var(--plum); font-weight: 600; }
         
-        /* Testimonial - Academic */
-        .testimonial { padding: 100px 0; background: #fff; text-align: center; }
-        .testimonial blockquote { font-size: 1.5rem; font-style: italic; color: #4a5568; max-width: 700px; margin: 0 auto 30px; }
-        .testimonial cite { font-family: 'Inter', sans-serif; font-size: 1rem; color: #718096; font-style: normal; }
-        .testimonial cite span { color: #2c5282; font-weight: 500; }
+        .pricing { padding: 120px 0; position: relative; z-index: 10; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .pricing-card { background: var(--white); padding: 48px 32px; border-radius: var(--r-lg); border: 1px solid rgba(0,0,0,0.08); transition: all var(--dur-mid) var(--ease-out); }
+        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+        .pricing-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+        .price { font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: var(--plum); margin: 24px 0; }
+        .price span { font-size: 1rem; color: var(--light); font-weight: 400; }
+        .pricing-card ul { list-style: none; margin: 28px 0; }
+        .pricing-card li { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--mid); font-family: var(--font-mono); font-size: 0.9rem; }
+        .pricing-card li::before { content: "✓ "; color: var(--plum); font-weight: 600; }
+        .btn-pricing { background: var(--plum); color: var(--white); padding: 14px 28px; border-radius: var(--r-md); text-decoration: none; font-family: var(--font-mono); font-weight: 500; display: block; text-align: center; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-pricing:hover { background: var(--ink); }
         
-        /* Footer */
-        footer { background: #1a202c; padding: 60px 0; color: #a0aec0; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 20px; }
-        .footer-col a { color: #a0aec0; text-decoration: none; display: block; margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
-        .footer-col a:hover { color: #fff; }
-        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #2d3748; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        footer { background: var(--ink); padding: 60px 0; color: var(--light); position: relative; z-index: 10; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+        .footer-col a { color: var(--light); text-decoration: none; display: block; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.85rem; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-family: var(--font-mono); font-size: 0.85rem; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .feature-grid, .formats-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <canvas id="blobCv"></canvas>
+    
+    <header class="rv">
         <div class="container nav">
             <div class="logo">Research Guru</div>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#formats">Export Formats</a>
+                <a href="#formats">Export</a>
                 <a href="#pricing">Pricing</a>
-                <a href="#academic">Academic Pricing</a>
+                <a href="#academic">Academic</a>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>AI-Powered Research Assistant<br><em>for Academics</em></h1>
-            <p class="hero-sub">Literature reviews in minutes. Citations in any format. Peer-reviewed sources only.</p>
-            <div class="hero-cta">
+            <h1 class="rv rv-d2">
+                <span class="line" data-chars="scramble">AI-Powered Research</span><br>
+                <span class="line" data-chars="scramble"><em>for Academics</em></span>
+            </h1>
+            <p class="hero-sub rv rv-d3">Literature reviews in minutes. Citations in any format. Peer-reviewed sources only.</p>
+            <div class="hero-cta rv rv-d3">
                 <a href="#pricing" class="btn-primary">Start Free Trial</a>
-                <a href="#demo" class="btn-secondary">View Sample Output</a>
+                <a href="#demo" class="btn-secondary">View Sample</a>
             </div>
-            <div class="citation-preview">
+            <div class="citation-preview rv rv-d3">
                 <h3>Export to Any Format</h3>
                 <div class="citation"><span>APA:</span> Smith, J. & Johnson, A. (2024). Machine Learning in Healthcare. <em>Journal of Medical AI</em>, 15(3), 234-251.</div>
                 <div class="citation"><span>MLA:</span> Smith, John, and Alice Johnson. "Machine Learning in Healthcare." <em>Journal of Medical AI</em>, vol. 15, no. 3, 2024, pp. 234-251.</div>
@@ -115,37 +123,37 @@
 
     <section class="features" id="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Built for Academic Research</h2>
                 <p>Everything researchers need. Nothing they don't.</p>
             </div>
             <div class="feature-grid">
-                <div class="feature">
+                <div class="feature rv rv-d1">
                     <div class="feature-icon">📚</div>
                     <h3>Peer-Reviewed Sources Only</h3>
                     <p>Access to 100M+ academic papers. Filter by journal impact factor, citation count, and publication date.</p>
                 </div>
-                <div class="feature">
+                <div class="feature rv rv-d2">
                     <div class="feature-icon">📝</div>
                     <h3>Automatic Citations</h3>
                     <p>Generate citations in APA, MLA, Chicago, Harvard, IEEE, and 50+ other formats. Export to BibTeX, EndNote, Zotero.</p>
                 </div>
-                <div class="feature">
+                <div class="feature rv rv-d1">
                     <div class="feature-icon">🔍</div>
                     <h3>Smart Literature Review</h3>
                     <p>AI summarizes key findings, methodologies, and limitations. Identify research gaps in minutes.</p>
                 </div>
-                <div class="feature">
+                <div class="feature rv rv-d2">
                     <div class="feature-icon">📊</div>
                     <h3>Citation Network Analysis</h3>
                     <p>Visualize citation relationships. Find seminal papers and track research evolution over time.</p>
                 </div>
-                <div class="feature">
+                <div class="feature rv rv-d1">
                     <div class="feature-icon">💾</div>
                     <h3>Reference Management</h3>
                     <p>Organize papers into projects. Tag, annotate, and search your personal library.</p>
                 </div>
-                <div class="feature">
+                <div class="feature rv rv-d2">
                     <div class="feature-icon">🔗</div>
                     <h3>Integration Ready</h3>
                     <p>Works with Zotero, Mendeley, EndNote. Overleaf integration for LaTeX users.</p>
@@ -156,54 +164,36 @@
 
     <section class="export-formats" id="formats">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Export to Any Format</h2>
                 <p>Compatible with all major reference managers and journals.</p>
             </div>
             <div class="formats-grid">
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">APA 7th</div>
-                </div>
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">MLA 9th</div>
-                </div>
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">Chicago</div>
-                </div>
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">Harvard</div>
-                </div>
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">IEEE</div>
-                </div>
-                <div class="format">
-                    <div class="format-icon">📄</div>
-                    <div class="format-name">BibTeX</div>
-                </div>
+                <div class="format rv rv-d1"><div class="format-icon">📄</div><div class="format-name">APA 7th</div></div>
+                <div class="format rv rv-d2"><div class="format-icon">📄</div><div class="format-name">MLA 9th</div></div>
+                <div class="format rv rv-d1"><div class="format-icon">📄</div><div class="format-name">Chicago</div></div>
+                <div class="format rv rv-d2"><div class="format-icon">📄</div><div class="format-name">Harvard</div></div>
+                <div class="format rv rv-d1"><div class="format-icon">📄</div><div class="format-name">IEEE</div></div>
+                <div class="format rv rv-d2"><div class="format-icon">📄</div><div class="format-name">BibTeX</div></div>
             </div>
         </div>
     </section>
 
     <section class="testimonial">
         <div class="container">
-            <blockquote>"Research Guru cut my literature review time from weeks to days. The citation export to Zotero is flawless. Essential for any PhD student."</blockquote>
-            <cite>— Dr. Sarah Chen, <span>Postdoctoral Researcher, MIT</span></cite>
+            <blockquote class="rv rv-d2">"Research Guru cut my literature review time from weeks to days. The citation export to Zotero is flawless. Essential for any PhD student."</blockquote>
+            <cite class="rv rv-d3">— Dr. Sarah Chen, <span>Postdoctoral Researcher, MIT</span></cite>
         </div>
     </section>
 
     <section class="pricing" id="pricing">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Academic Pricing</h2>
                 <p>Discounted rates for students and researchers. Grant-friendly invoicing.</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d1">
                     <h3>Student</h3>
                     <div class="price">$99<span>one-time</span></div>
                     <ul>
@@ -215,7 +205,7 @@
                     </ul>
                     <a href="#purchase" class="btn-pricing">Purchase</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d2">
                     <h3>Professional</h3>
                     <div class="price">$199<span>one-time</span></div>
                     <ul>
@@ -228,7 +218,7 @@
                     </ul>
                     <a href="#purchase" class="btn-pricing">Purchase</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d3">
                     <h3>Lab/Team</h3>
                     <div class="price">$299<span>one-time</span></div>
                     <ul>
@@ -281,5 +271,69 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('[data-chars="scramble"] .line').forEach(line => {
+            const text = line.textContent;
+            line.textContent = '';
+            line.classList.add('reveal-chars');
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.dataset.original = char;
+                span.dataset.scramble = true;
+                line.appendChild(span);
+            });
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'is-revealed');
+                    entry.target.querySelectorAll('.char[data-scramble]').forEach((char, i) => {
+                        setTimeout(() => char.classList.add('char-in'), i * 30);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.rv, .rvl, .rvr, .pop').forEach(el => observer.observe(el));
+
+        const canvas = document.getElementById('blobCv');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const blobs = [
+            { x: canvas.width * 0.3, y: canvas.height * 0.4, r: 180, color: '123, 63, 181', vx: 0.25, vy: 0.2 },
+            { x: canvas.width * 0.6, y: canvas.height * 0.6, r: 140, color: '26, 158, 198', vx: -0.2, vy: 0.25 },
+            { x: canvas.width * 0.5, y: canvas.height * 0.3, r: 100, color: '240, 184, 32', vx: 0.2, vy: -0.25 }
+        ];
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            blobs.forEach(blob => {
+                blob.x += blob.vx;
+                blob.y += blob.vy;
+                if (blob.x < 0 || blob.x > canvas.width) blob.vx *= -1;
+                if (blob.y < 0 || blob.y > canvas.height) blob.vy *= -1;
+                const gradient = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+                gradient.addColorStop(0, `rgba(${blob.color}, 0.25)`);
+                gradient.addColorStop(1, `rgba(${blob.color}, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>

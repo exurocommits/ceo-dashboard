@@ -3,173 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Pro - Enterprise AI Research | SOC2 Compliant</title>
+    <title>Privacy Pro - Enterprise AI Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reveals.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a1628;
-            color: #e2e8f0;
+            font-family: var(--font-display);
+            background: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
+        /* Animated Blobs Background */
+        #blobCv { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+        .blob-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .blob { position: absolute; pointer-events: none; }
+        .blob svg { width: 100%; height: 100%; overflow: visible; }
+        
         /* Header */
-        header { background: #1a365d; padding: 20px 0; border-bottom: 3px solid #2f855a; }
+        header { padding: 24px 0; position: relative; z-index: 10; }
         .nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; }
-        .logo span { color: #2f855a; }
-        .nav-links a { color: #cbd5e0; text-decoration: none; margin-left: 30px; font-weight: 500; }
-        .nav-links a:hover { color: #2f855a; }
-        .btn-demo { background: #2f855a; color: #fff; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+        .logo span { color: var(--blue); }
+        .nav-links a { color: var(--mid); text-decoration: none; margin-left: 30px; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--blue); }
+        .btn-nav { background: var(--ink); color: var(--white); padding: 12px 24px; border-radius: var(--r-md); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
         
         /* Hero */
-        .hero { padding: 100px 0; background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%); }
+        .hero { padding: 120px 0 80px; position: relative; z-index: 10; }
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
-        .hero h1 span { color: #2f855a; }
-        .hero-sub { font-size: 1.4rem; color: #a0aec0; margin-bottom: 40px; }
-        .hero-cta { display: flex; gap: 20px; }
-        .btn-primary { background: #2f855a; color: #fff; padding: 16px 40px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
-        .btn-secondary { background: transparent; color: #fff; padding: 16px 40px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #4a5568; display: inline-block; }
-        .trust-badges { display: flex; gap: 30px; margin-top: 60px; }
-        .badge { background: #1a365d; padding: 15px 25px; border-radius: 8px; text-align: center; }
-        .badge-icon { font-size: 2rem; margin-bottom: 10px; }
-        .badge-text { font-size: 0.9rem; color: #a0aec0; }
+        .hero-label { font-family: var(--font-mono); font-size: 0.85rem; color: var(--light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: var(--ink); }
+        .hero h1 span { color: var(--blue); }
+        .hero-sub { font-size: 1.3rem; color: var(--mid); margin-bottom: 40px; font-weight: 300; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: var(--blue); color: var(--white); padding: 16px 32px; border-radius: var(--r-md); text-decoration: none; font-weight: 600; font-size: 1rem; display: inline-block; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26, 158, 198, 0.3); }
+        .btn-secondary { background: transparent; color: var(--ink); padding: 16px 32px; border-radius: var(--r-md); text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid var(--ink); display: inline-block; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-secondary:hover { background: var(--ink); color: var(--white); }
+        
+        /* Trust Badges */
+        .trust-badges { display: flex; gap: 24px; flex-wrap: wrap; }
+        .badge { background: var(--white); padding: 16px 20px; border-radius: var(--r-md); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .badge-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .badge-text { font-size: 0.85rem; color: var(--mid); font-weight: 500; }
         
         /* Features */
-        .features { padding: 100px 0; background: #0a1628; }
+        .features { padding: 120px 0; position: relative; z-index: 10; }
         .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.8rem; margin-bottom: 15px; }
-        .section-title p { color: #a0aec0; font-size: 1.2rem; }
-        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .feature-card { background: #1a365d; padding: 40px; border-radius: 12px; border: 1px solid #2d3748; }
-        .feature-icon { font-size: 3rem; margin-bottom: 20px; }
-        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .feature-card p { color: #a0aec0; }
+        .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; color: var(--ink); }
+        .section-title p { color: var(--mid); font-size: 1.1rem; font-weight: 300; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .feature-card { background: var(--white); padding: 32px; border-radius: var(--r-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all var(--dur-mid) var(--ease-out); }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+        .feature-card p { color: var(--mid); font-size: 0.95rem; line-height: 1.7; }
         
         /* Compliance */
-        .compliance { padding: 100px 0; background: #1a365d; }
-        .compliance-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .compliance-card { text-align: center; padding: 40px; background: #0a1628; border-radius: 12px; }
-        .compliance-card h3 { font-size: 1.3rem; margin: 20px 0 10px; }
-        .compliance-card p { color: #a0aec0; font-size: 0.95rem; }
+        .compliance { padding: 100px 0; background: var(--white); position: relative; z-index: 10; }
+        .compliance-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .compliance-card { text-align: center; padding: 32px; background: var(--bg); border-radius: var(--r-lg); }
+        .compliance-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .compliance-card h3 { font-size: 1.1rem; font-weight: 600; margin: 16px 0 8px; color: var(--ink); }
+        .compliance-card p { color: var(--mid); font-size: 0.9rem; }
         
         /* Pricing */
-        .pricing { padding: 100px 0; background: #0a1628; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .pricing-card { background: #1a365d; padding: 50px 40px; border-radius: 12px; border: 1px solid #2d3748; position: relative; }
-        .pricing-card.featured { border: 2px solid #2f855a; }
-        .pricing-card.featured::before { content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #2f855a; color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
-        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .price { font-size: 3.5rem; font-weight: 800; color: #2f855a; margin: 20px 0; }
-        .price span { font-size: 1rem; color: #a0aec0; font-weight: 400; }
-        .pricing-card ul { list-style: none; margin: 30px 0; }
-        .pricing-card li { padding: 12px 0; border-bottom: 1px solid #2d3748; color: #cbd5e0; }
-        .pricing-card li::before { content: "✓ "; color: #2f855a; font-weight: 700; }
-        .btn-pricing { background: #2f855a; color: #fff; padding: 14px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; display: block; text-align: center; }
+        .pricing { padding: 120px 0; position: relative; z-index: 10; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .pricing-card { background: var(--white); padding: 48px 32px; border-radius: var(--r-lg); border: 1px solid rgba(0,0,0,0.08); position: relative; transition: all var(--dur-mid) var(--ease-out); }
+        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+        .pricing-card.featured { border: 2px solid var(--blue); }
+        .pricing-card.featured::before { content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--blue); color: var(--white); padding: 6px 16px; border-radius: var(--r-full); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; }
+        .pricing-card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+        .price { font-size: 3.5rem; font-weight: 800; color: var(--blue); margin: 20px 0; font-family: var(--font-display); }
+        .price span { font-size: 1rem; color: var(--light); font-weight: 400; }
+        .pricing-card ul { list-style: none; margin: 28px 0; }
+        .pricing-card li { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--mid); font-size: 0.95rem; }
+        .pricing-card li::before { content: "✓ "; color: var(--blue); font-weight: 700; }
+        .btn-pricing { background: var(--ink); color: var(--white); padding: 14px 28px; border-radius: var(--r-md); text-decoration: none; font-weight: 600; display: block; text-align: center; transition: all var(--dur-mid) var(--ease-out); }
+        .btn-pricing:hover { background: var(--blue); }
         
         /* Footer */
-        footer { background: #1a365d; padding: 60px 0; border-top: 1px solid #2d3748; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
-        .footer-col a { color: #a0aec0; text-decoration: none; display: block; margin-bottom: 10px; }
-        .footer-col a:hover { color: #2f855a; }
-        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #2d3748; color: #718096; }
+        footer { background: var(--ink); padding: 60px 0 40px; color: var(--light); position: relative; z-index: 10; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+        .footer-col a { color: var(--light); text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.9rem; transition: color var(--dur-fast); }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .feature-grid, .compliance-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .trust-badges { justify-content: center; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container nav">
-            <div class="logo">Privacy<span>Pro</span></div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#compliance">Compliance</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#contact" class="btn-demo">Request Demo</a>
-            </div>
+    <canvas id="blobCv"></canvas>
+    
+    <div class="blob-layer">
+        <div class="blob blob-lg blob-tl blob-d1">
+            <svg viewBox="0 0 600 600"><defs><filter id="bf1"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="2"/><feDisplacementMap in="SourceGraphic" scale="32"/></filter></defs><path filter="url(#bf1)" fill="#E04038" fill-opacity="0.4" d="M480,290 C510,360 480,450 410,490 C340,530 250,530 180,490 C110,450 80,360 100,280 C120,200 200,140 290,130 C380,120 450,220 480,290Z"/></svg>
         </div>
-    </header>
+        <div class="blob blob-md blob-r blob-d2">
+            <svg viewBox="0 0 400 400"><defs><filter id="bf2"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="28"/></filter></defs><path filter="url(#bf2)" fill="#1A9EC6" fill-opacity="0.35" d="M320,195 C342,248 318,308 268,334 C218,360 152,352 115,314 C78,276 78,210 108,172 C138,134 196,122 248,132 C300,142 298,142 320,195Z"/></svg>
+        </div>
+        <div class="blob blob-sm blob-d3" style="top:60%;left:40%;">
+            <svg viewBox="0 0 300 300"><defs><filter id="bf3"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="11"/><feDisplacementMap in="SourceGraphic" scale="28"/></filter></defs><path filter="url(#bf3)" fill="#F0B820" fill-opacity="0.45" d="M235,148 C252,186 238,228 200,248 C162,268 114,258 90,224 C66,190 72,143 100,118 C128,93 168,88 200,102 C232,116 218,110 235,148Z"/></svg>
+        </div>
+    </div>
 
-    <section class="hero">
-        <div class="container hero-grid">
-            <div>
-                <h1>Enterprise-Grade AI Research.<br><span>Zero Data Leakage.</span></h1>
-                <p class="hero-sub">SOC2 compliant. Self-hosted. Your data never leaves your infrastructure.</p>
-                <div class="hero-cta">
-                    <a href="#pricing" class="btn-primary">Start Enterprise Trial</a>
-                    <a href="#demo" class="btn-secondary">Watch Demo</a>
-                </div>
-                <div class="trust-badges">
-                    <div class="badge">
-                        <div class="badge-icon">🔒</div>
-                        <div class="badge-text">SOC2 Type II</div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">🇪🇺</div>
-                        <div class="badge-text">GDPR Compliant</div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">🏥</div>
-                        <div class="badge-text">HIPAA Ready</div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">🏢</div>
-                        <div class="badge-text">50+ Enterprises</div>
-                    </div>
+    <div class="container">
+        <header class="rv">
+            <div class="nav">
+                <div class="logo">Privacy<span>Pro</span></div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#compliance">Compliance</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact" class="btn-nav">Request Demo</a>
                 </div>
             </div>
-            <div>
-                <div style="background: #0a1628; padding: 40px; border-radius: 12px; border: 1px solid #2d3748;">
-                    <pre style="color: #48bb78; font-family: monospace; font-size: 0.9rem;">
+        </header>
+
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <p class="hero-label rv">SOC2 COMPLIANT · ENTERPRISE GRADE</p>
+                    <h1 class="rv rv-d2">
+                        <span class="line" data-chars="scramble">Enterprise AI Research.</span><br>
+                        <span class="line" data-chars="scramble">Zero Data Leakage.</span>
+                    </h1>
+                    <p class="hero-sub rv rv-d3">Your data never leaves your infrastructure. Self-hosted. Audit-ready.</p>
+                    <div class="hero-cta rv rv-d3">
+                        <a href="#pricing" class="btn-primary">Start Enterprise Trial</a>
+                        <a href="#demo" class="btn-secondary">Watch Demo</a>
+                    </div>
+                    <div class="trust-badges rv rv-d3">
+                        <div class="badge"><div class="badge-icon">🔒</div><div class="badge-text">SOC2 Type II</div></div>
+                        <div class="badge"><div class="badge-icon">🇪🇺</div><div class="badge-text">GDPR</div></div>
+                        <div class="badge"><div class="badge-icon">🏥</div><div class="badge-text">HIPAA</div></div>
+                        <div class="badge"><div class="badge-icon">🏢</div><div class="badge-text">50+ Enterprises</div></div>
+                    </div>
+                </div>
+                <div class="rv rv-d3">
+                    <div style="background: var(--white); padding: 40px; border-radius: var(--r-lg); box-shadow: 0 8px 32px rgba(0,0,0,0.08);">
+                        <pre style="color: var(--blue); font-family: var(--font-mono); font-size: 0.9rem; overflow-x: auto;">
 $ privacy-pro deploy --enterprise
-✓ SOC2 compliance verified
-✓ SSO integration ready
-✓ Audit logs enabled
-✓ Data residency: EU-West
-✓ Encryption: AES-256
+<span style="color: var(--coral);">✓</span> SOC2 compliance verified
+<span style="color: var(--coral);">✓</span> SSO integration ready
+<span style="color: var(--coral);">✓</span> Audit logs enabled
+<span style="color: var(--coral);">✓</span> Data residency: EU-West
+<span style="color: var(--coral);">✓</span> Encryption: AES-256
 
-Deployment complete.
+<span style="color: var(--blue); font-weight: 600;">Deployment complete.</span>
 Your AI research infrastructure is ready.
-                    </pre>
+                        </pre>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <section class="features" id="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Built for Enterprise Security</h2>
                 <p>Everything your security team requires. Nothing they don't.</p>
             </div>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card rv rv-d1">
                     <div class="feature-icon">🔐</div>
                     <h3>Self-Hosted Deployment</h3>
                     <p>Your data never leaves your infrastructure. Full control over data residency and access.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d2">
                     <div class="feature-icon">📋</div>
                     <h3>Audit Logs</h3>
                     <p>Complete audit trail of all queries, users, and data access. Exportable for compliance.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d3">
                     <div class="feature-icon">🔑</div>
                     <h3>Enterprise SSO</h3>
                     <p>Okta, Azure AD, OneLogin integration. SAML 2.0 and OIDC support included.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d1">
                     <div class="feature-icon">🛡️</div>
                     <h3>Data Encryption</h3>
                     <p>AES-256 encryption at rest. TLS 1.3 in transit. Key management your way.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d2">
                     <div class="feature-icon">📊</div>
                     <h3>Admin Dashboard</h3>
                     <p>User management, usage analytics, quota controls. Full visibility for IT teams.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d3">
                     <div class="feature-icon">🤝</div>
                     <h3>Priority Support</h3>
                     <p>24/7 enterprise support. Dedicated Slack channel. 4-hour SLA for critical issues.</p>
@@ -180,28 +215,28 @@ Your AI research infrastructure is ready.
 
     <section class="compliance" id="compliance">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Compliance Ready</h2>
                 <p>Certifications and compliance your legal team will love.</p>
             </div>
             <div class="compliance-grid">
-                <div class="compliance-card">
-                    <div style="font-size: 3rem;">📜</div>
+                <div class="compliance-card rv rv-d1">
+                    <div class="compliance-icon">📜</div>
                     <h3>SOC2 Type II</h3>
                     <p>Annual audits completed. Reports available under NDA.</p>
                 </div>
-                <div class="compliance-card">
-                    <div style="font-size: 3rem;">🇪🇺</div>
+                <div class="compliance-card rv rv-d2">
+                    <div class="compliance-icon">🇪🇺</div>
                     <h3>GDPR</h3>
                     <p>Full GDPR compliance. EU data residency options.</p>
                 </div>
-                <div class="compliance-card">
-                    <div style="font-size: 3rem;">🏥</div>
+                <div class="compliance-card rv rv-d3">
+                    <div class="compliance-icon">🏥</div>
                     <h3>HIPAA</h3>
                     <p>BAA available. Healthcare deployment ready.</p>
                 </div>
-                <div class="compliance-card">
-                    <div style="font-size: 3rem;">🏦</div>
+                <div class="compliance-card rv rv-d1">
+                    <div class="compliance-icon">🏦</div>
                     <h3>FINRA</h3>
                     <p>Financial services compliant. Audit trails included.</p>
                 </div>
@@ -211,12 +246,12 @@ Your AI research infrastructure is ready.
 
     <section class="pricing" id="pricing">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Enterprise Pricing</h2>
                 <p>Transparent pricing. No hidden fees. Volume discounts available.</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d1">
                     <h3>Startup</h3>
                     <div class="price">$499<span>/year</span></div>
                     <ul>
@@ -228,7 +263,7 @@ Your AI research infrastructure is ready.
                     </ul>
                     <a href="#contact" class="btn-pricing">Start Trial</a>
                 </div>
-                <div class="pricing-card featured">
+                <div class="pricing-card featured rv rv-d2">
                     <h3>Enterprise</h3>
                     <div class="price">$999<span>/year</span></div>
                     <ul>
@@ -241,7 +276,7 @@ Your AI research infrastructure is ready.
                     </ul>
                     <a href="#contact" class="btn-pricing">Start Trial</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d3">
                     <h3>Unlimited</h3>
                     <div class="price">Custom</div>
                     <ul>
@@ -295,5 +330,73 @@ Your AI research infrastructure is ready.
             </div>
         </div>
     </footer>
+
+    <script>
+        // Scramble text reveal
+        document.querySelectorAll('[data-chars="scramble"] .line').forEach(line => {
+            const text = line.textContent;
+            line.textContent = '';
+            line.classList.add('reveal-chars');
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.dataset.original = char;
+                span.dataset.scramble = true;
+                line.appendChild(span);
+            });
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'is-revealed');
+                    entry.target.querySelectorAll('.char[data-scramble]').forEach((char, i) => {
+                        setTimeout(() => char.classList.add('char-in'), i * 30);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.rv, .rvl, .rvr, .pop, .reveal-on-enter').forEach(el => observer.observe(el));
+
+        // Simple blob canvas animation
+        const canvas = document.getElementById('blobCv');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const blobs = [
+            { x: canvas.width * 0.2, y: canvas.height * 0.3, r: 200, color: '224, 64, 56', vx: 0.3, vy: 0.2 },
+            { x: canvas.width * 0.7, y: canvas.height * 0.5, r: 150, color: '26, 158, 198', vx: -0.2, vy: 0.3 },
+            { x: canvas.width * 0.5, y: canvas.height * 0.7, r: 100, color: '240, 184, 32', vx: 0.2, vy: -0.3 }
+        ];
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            blobs.forEach(blob => {
+                blob.x += blob.vx;
+                blob.y += blob.vy;
+                if (blob.x < 0 || blob.x > canvas.width) blob.vx *= -1;
+                if (blob.y < 0 || blob.y > canvas.height) blob.vy *= -1;
+                
+                const gradient = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+                gradient.addColorStop(0, `rgba(${blob.color}, 0.3)`);
+                gradient.addColorStop(1, `rgba(${blob.color}, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>

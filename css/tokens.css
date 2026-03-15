@@ -1,0 +1,58 @@
+:root {
+  /* === COLORS === */
+  --bg: #FBF8F1;
+  --ink: #1C2627;
+  --mid: #5a6060;
+  --light: #9aa0a0;
+  --coral: #E04038;
+  --blue: #1A9EC6;
+  --gold: #F0B820;
+  --plum: #7B3FB5;
+  --pink: #D84898;
+  --white: #FFFFFF;
+
+  /* === ACCENT PALETTE === */
+  --accent-0: var(--coral);
+  --accent-1: var(--blue);
+  --accent-2: var(--gold);
+  --accent-3: var(--plum);
+  --accent-4: var(--pink);
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Sora', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-serif: 'Instrument Serif', serif;
+
+  /* === SPACING SCALE === */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+
+  /* === BORDER RADIUS === */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-full: 9999px;
+
+  /* === TRANSITIONS === */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-spring: cubic-bezier(0.22, 0.68, 0, 1.2);
+  --dur-fast: 150ms;
+  --dur-mid: 300ms;
+  --dur-slow: 600ms;
+
+  /* === Z-INDEX STACK === */
+  --z-blob: 0;
+  --z-content: 10;
+  --z-overlay: 50;
+  --z-nav: 100;
+  --z-transition: 200;
+  --z-cursor: 9999;
+}

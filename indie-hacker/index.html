@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indie Hacker OS - The Only AI Tool You'll Ever Buy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reveals.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            background: #0d1117;
-            color: #c9d1d9;
-            line-height: 1.6;
-        }
+        body { font-family: var(--font-mono); background: #0d1117; color: #c9d1d9; line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
-        /* Terminal Header */
-        header { background: #161b22; padding: 20px 0; border-bottom: 1px solid #30363d; }
+        #blobCv { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+        
+        header { background: #161b22; padding: 20px 0; border-bottom: 1px solid #30363d; position: relative; z-index: 10; }
         .nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; color: #48bb78; }
+        .logo { font-size: 1.3rem; color: #48bb78; }
         .logo::before { content: "> "; }
-        .nav-links a { color: #8b949e; text-decoration: none; margin-left: 30px; }
+        .nav-links a { color: #8b949e; text-decoration: none; margin-left: 30px; font-size: 0.9rem; }
         .nav-links a:hover { color: #48bb78; }
         
-        /* Hero - Terminal Style */
-        .hero { padding: 100px 0; }
+        .hero { padding: 100px 0; position: relative; z-index: 10; }
         .terminal-window { background: #161b22; border-radius: 12px; border: 1px solid #30363d; overflow: hidden; }
         .terminal-header { background: #0d1117; padding: 15px 20px; border-bottom: 1px solid #30363d; display: flex; gap: 8px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -33,68 +33,72 @@
         .terminal-body { padding: 40px; }
         .command { color: #48bb78; margin-bottom: 10px; }
         .command::before { content: "$ "; }
-        .output { color: #8b949e; margin-bottom: 30px; white-space: pre-wrap; }
+        .output { color: #8b949e; margin-bottom: 30px; white-space: pre-wrap; font-size: 0.9rem; }
         .output .success { color: #48bb78; }
         .output .highlight { color: #9f7aea; }
         .hero-content { margin-top: 60px; }
-        .hero h1 { font-family: -apple-system, sans-serif; font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: #f0f6fc; }
+        .hero h1 { font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: #f0f6fc; line-height: 1.1; }
         .hero h1 span { color: #48bb78; }
         .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
-        .hero-cta { display: flex; gap: 20px; }
-        .btn-primary { background: #48bb78; color: #0d1117; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
-        .btn-secondary { background: transparent; color: #48bb78; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #48bb78; display: inline-block; }
+        .hero-cta { display: flex; gap: 16px; }
+        .btn-primary { background: #48bb78; color: #0d1117; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; transition: all 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(72, 187, 120, 0.3); }
+        .btn-secondary { background: transparent; color: #48bb78; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #48bb78; display: inline-block; transition: all 0.2s; }
+        .btn-secondary:hover { background: #48bb78; color: #0d1117; }
         
-        /* Features */
-        .features { padding: 100px 0; background: #0d1117; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-family: -apple-system, sans-serif; font-size: 2.5rem; margin-bottom: 15px; color: #f0f6fc; }
-        .section-title p { color: #8b949e; font-size: 1.2rem; }
-        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .feature-card { background: #161b22; padding: 35px; border-radius: 12px; border: 1px solid #30363d; }
-        .feature-card:hover { border-color: #48bb78; }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
-        .feature-card h3 { font-family: -apple-system, sans-serif; font-size: 1.3rem; margin-bottom: 15px; color: #f0f6fc; }
-        .feature-card p { color: #8b949e; }
-        
-        /* Social Proof */
-        .social-proof { padding: 80px 0; background: #161b22; }
+        .social-proof { padding: 80px 0; background: #161b22; position: relative; z-index: 10; }
         .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
-        .proof-item { }
-        .proof-number { font-size: 3rem; font-weight: 800; color: #48bb78; margin-bottom: 10px; }
+        .proof-number { font-size: 3rem; font-weight: 800; color: #48bb78; margin-bottom: 10px; font-family: var(--font-display); }
         .proof-label { color: #8b949e; font-size: 0.95rem; }
         
-        /* Pricing */
-        .pricing { padding: 100px 0; background: #0d1117; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .pricing-card { background: #161b22; padding: 50px 40px; border-radius: 12px; border: 1px solid #30363d; position: relative; }
-        .pricing-card.featured { border: 2px solid #48bb78; }
-        .pricing-card.featured::before { content: "BEST VALUE"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #48bb78; color: #0d1117; padding: 5px 20px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
-        .pricing-card h3 { font-family: -apple-system, sans-serif; font-size: 1.4rem; margin-bottom: 10px; color: #f0f6fc; }
-        .price { font-family: -apple-system, sans-serif; font-size: 3.5rem; font-weight: 800; color: #48bb78; margin: 25px 0; }
-        .price span { font-size: 1rem; color: #8b949e; font-weight: 400; }
-        .pricing-card ul { list-style: none; margin: 30px 0; }
-        .pricing-card li { padding: 15px 0; border-bottom: 1px solid #30363d; color: #c9d1d9; font-family: -apple-system, sans-serif; font-size: 0.95rem; }
-        .pricing-card li::before { content: "✓ "; color: #48bb78; font-weight: 700; }
-        .btn-pricing { background: #48bb78; color: #0d1117; padding: 16px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; display: block; text-align: center; font-family: -apple-system, sans-serif; }
+        .features { padding: 120px 0; background: #0d1117; position: relative; z-index: 10; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.15rem; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card { background: #161b22; padding: 35px; border-radius: 12px; border: 1px solid #30363d; transition: all 0.2s; }
+        .feature-card:hover { border-color: #48bb78; transform: translateY(-4px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 12px; color: #f0f6fc; }
+        .feature-card p { color: #8b949e; font-size: 0.95rem; line-height: 1.7; }
         
-        /* Testimonial */
-        .testimonial { padding: 100px 0; background: #161b22; }
+        .testimonial { padding: 100px 0; background: #161b22; position: relative; z-index: 10; }
         .testimonial-card { max-width: 800px; margin: 0 auto; text-align: center; }
-        .testimonial-text { font-size: 1.4rem; color: #c9d1d9; margin-bottom: 30px; line-height: 1.8; }
-        .testimonial-author { color: #8b949e; }
+        .testimonial-text { font-size: 1.35rem; color: #c9d1d9; margin-bottom: 30px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-size: 0.95rem; }
         .testimonial-author span { color: #48bb78; }
         
-        /* Footer */
-        footer { background: #0d1117; padding: 60px 0; border-top: 1px solid #30363d; }
+        .pricing { padding: 120px 0; background: #0d1117; position: relative; z-index: 10; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pricing-card { background: #161b22; padding: 50px 40px; border-radius: 12px; border: 1px solid #30363d; position: relative; transition: all 0.2s; }
+        .pricing-card:hover { transform: translateY(-4px); }
+        .pricing-card.featured { border: 2px solid #48bb78; }
+        .pricing-card.featured::before { content: "BEST VALUE"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #48bb78; color: #0d1117; padding: 6px 20px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; }
+        .pricing-card h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 8px; color: #f0f6fc; }
+        .price { font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: #48bb78; margin: 24px 0; }
+        .price span { font-size: 1rem; color: #8b949e; font-weight: 400; }
+        .pricing-card ul { list-style: none; margin: 30px 0; }
+        .pricing-card li { padding: 15px 0; border-bottom: 1px solid #30363d; color: #c9d1d9; font-size: 0.95rem; }
+        .pricing-card li::before { content: "✓ "; color: #48bb78; font-weight: 700; }
+        .btn-pricing { background: #48bb78; color: #0d1117; padding: 16px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; display: block; text-align: center; transition: all 0.2s; font-family: var(--font-display); }
+        .btn-pricing:hover { transform: translateY(-2px); }
+        
+        footer { background: #0d1117; padding: 60px 0; border-top: 1px solid #30363d; position: relative; z-index: 10; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-col h4 { font-family: -apple-system, sans-serif; font-size: 1rem; margin-bottom: 20px; color: #f0f6fc; }
-        .footer-col a { color: #8b949e; text-decoration: none; display: block; margin-bottom: 12px; font-family: -apple-system, sans-serif; font-size: 0.9rem; }
+        .footer-col h4 { font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 20px; color: #f0f6fc; }
+        .footer-col a { color: #8b949e; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.9rem; }
         .footer-col a:hover { color: #48bb78; }
-        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #30363d; color: #8b949e; font-family: -apple-system, sans-serif; font-size: 0.9rem; }
+        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.9rem; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .feature-grid, .pricing-grid, .footer-grid, .proof-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="blobCv"></canvas>
+    
     <header>
         <div class="container nav">
             <div class="logo">indie-hacker-os</div>
@@ -109,7 +113,7 @@
 
     <section class="hero">
         <div class="container">
-            <div class="terminal-window">
+            <div class="terminal-window rv">
                 <div class="terminal-header">
                     <div class="dot dot-red"></div>
                     <div class="dot dot-yellow"></div>
@@ -132,9 +136,12 @@ No subscription. No monthly fees. Forever.
                 </div>
             </div>
             <div class="hero-content">
-                <h1>The Only AI Tool<br><span>You'll Ever Buy</span></h1>
-                <p class="hero-sub">Lifetime access. No subscription. Built for makers who ship.</p>
-                <div class="hero-cta">
+                <h1 class="rv rv-d2">
+                    <span class="line" data-chars="scramble">The Only AI Tool</span><br>
+                    <span class="line" data-chars="scramble"><span style="color: #48bb78;">You'll Ever Buy</span></span>
+                </h1>
+                <p class="hero-sub rv rv-d3">Lifetime access. No subscription. Built for makers who ship.</p>
+                <div class="hero-cta rv rv-d3">
                     <a href="#pricing" class="btn-primary">Get Lifetime Access</a>
                     <a href="#demo" class="btn-secondary">Watch Demo</a>
                 </div>
@@ -145,59 +152,47 @@ No subscription. No monthly fees. Forever.
     <section class="social-proof">
         <div class="container">
             <div class="proof-grid">
-                <div class="proof-item">
-                    <div class="proof-number">500+</div>
-                    <div class="proof-label">Indie Hackers</div>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-number">4.9★</div>
-                    <div class="proof-label">Product Hunt</div>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-number">∞</div>
-                    <div class="proof-label">Updates</div>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-number">30d</div>
-                    <div class="proof-label">Money Back</div>
-                </div>
+                <div class="proof-item rv rv-d1"><div class="proof-number">500+</div><div class="proof-label">Indie Hackers</div></div>
+                <div class="proof-item rv rv-d2"><div class="proof-number">4.9★</div><div class="proof-label">Product Hunt</div></div>
+                <div class="proof-item rv rv-d1"><div class="proof-number">∞</div><div class="proof-label">Updates</div></div>
+                <div class="proof-item rv rv-d2"><div class="proof-number">30d</div><div class="proof-label">Money Back</div></div>
             </div>
         </div>
     </section>
 
     <section class="features" id="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Built for Solo Founders</h2>
                 <p>Everything you need. Nothing you don't.</p>
             </div>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card rv rv-d1">
                     <div class="feature-icon">🚀</div>
                     <h3>Market Research</h3>
                     <p>Validate ideas in minutes. TAM/SAM/SOM analysis. Competitor landscape. No MBA required.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d2">
                     <div class="feature-icon">🎯</div>
                     <h3>Customer Profiles</h3>
                     <p>ICP templates. Demographic analysis. Pain point mapping. Know your buyers.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d1">
                     <div class="feature-icon">📊</div>
                     <h3>Competitor Intel</h3>
                     <p>Track competitors. Pricing analysis. Feature comparison. Stay ahead.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d2">
                     <div class="feature-icon">📝</div>
                     <h3>Content Generator</h3>
                     <p>Landing pages. Emails. Social posts. Blog posts. Ship faster.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d1">
                     <div class="feature-icon">💰</div>
                     <h3>Pricing Strategy</h3>
                     <p>Price optimization. Tier analysis. Revenue projections. Maximize MRR.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card rv rv-d2">
                     <div class="feature-icon">🔧</div>
                     <h3>API Access</h3>
                     <p>Integrate with your stack. Webhooks. Custom workflows. Build on top.</p>
@@ -209,20 +204,20 @@ No subscription. No monthly fees. Forever.
     <section class="testimonial" id="testimonials">
         <div class="container">
             <div class="testimonial-card">
-                <p class="testimonial-text">"I was about to subscribe to 5 different AI tools. Indie Hacker OS does everything for a one-time payment. Best $99 I've spent on my business."</p>
-                <p class="testimonial-author">— Alex K., <span>Bootstrapped to $30k MRR</span></p>
+                <p class="testimonial-text rv rv-d2">"I was about to subscribe to 5 different AI tools. Indie Hacker OS does everything for a one-time payment. Best $99 I've spent on my business."</p>
+                <p class="testimonial-author rv rv-d3">— Alex K., <span>Bootstrapped to $30k MRR</span></p>
             </div>
         </div>
     </section>
 
     <section class="pricing" id="pricing">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title rv">
                 <h2>Simple Pricing</h2>
                 <p>One payment. Forever. No BS.</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d1">
                     <h3>Early Bird</h3>
                     <div class="price">$49</div>
                     <ul>
@@ -234,7 +229,7 @@ No subscription. No monthly fees. Forever.
                     </ul>
                     <a href="#purchase" class="btn-pricing">Get Early Bird</a>
                 </div>
-                <div class="pricing-card featured">
+                <div class="pricing-card featured rv rv-d2">
                     <h3>Standard</h3>
                     <div class="price">$99</div>
                     <ul>
@@ -247,7 +242,7 @@ No subscription. No monthly fees. Forever.
                     </ul>
                     <a href="#purchase" class="btn-pricing">Get Lifetime</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card rv rv-d3">
                     <h3>Pro</h3>
                     <div class="price">$149</div>
                     <ul>
@@ -301,5 +296,69 @@ No subscription. No monthly fees. Forever.
             </div>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('[data-chars="scramble"] .line').forEach(line => {
+            const text = line.textContent;
+            line.textContent = '';
+            line.classList.add('reveal-chars');
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.dataset.original = char;
+                span.dataset.scramble = true;
+                line.appendChild(span);
+            });
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'is-revealed');
+                    entry.target.querySelectorAll('.char[data-scramble]').forEach((char, i) => {
+                        setTimeout(() => char.classList.add('char-in'), i * 30);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.rv, .rvl, .rvr, .pop').forEach(el => observer.observe(el));
+
+        const canvas = document.getElementById('blobCv');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const blobs = [
+            { x: canvas.width * 0.25, y: canvas.height * 0.35, r: 200, color: '72, 187, 120', vx: 0.3, vy: 0.25 },
+            { x: canvas.width * 0.65, y: canvas.height * 0.55, r: 160, color: '159, 122, 234', vx: -0.25, vy: 0.3 },
+            { x: canvas.width * 0.5, y: canvas.height * 0.75, r: 120, color: '240, 184, 32', vx: 0.25, vy: -0.3 }
+        ];
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            blobs.forEach(blob => {
+                blob.x += blob.vx;
+                blob.y += blob.vy;
+                if (blob.x < 0 || blob.x > canvas.width) blob.vx *= -1;
+                if (blob.y < 0 || blob.y > canvas.height) blob.vy *= -1;
+                const gradient = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+                gradient.addColorStop(0, `rgba(${blob.color}, 0.2)`);
+                gradient.addColorStop(1, `rgba(${blob.color}, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>

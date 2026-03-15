@@ -1,0 +1,120 @@
+@import './tokens.css';
+
+/* ============================================================
+   CHARACTER REVEAL — BASE
+   ============================================================ */
+.char {
+  display: inline-block;
+}
+
+.reveal-chars {
+  overflow: hidden;
+}
+
+/* ============================================================
+   SCRAMBLE VARIANT
+   ============================================================ */
+[data-chars="scramble"] .char {
+  opacity: 0;
+}
+
+[data-chars="scramble"] .char.char-in {
+  opacity: 1;
+  transition: opacity 80ms linear;
+}
+
+/* ============================================================
+   STAGGER DELAYS
+   ============================================================ */
+.char:nth-child(1)  { transition-delay:   0ms; }
+.char:nth-child(2)  { transition-delay:  30ms; }
+.char:nth-child(3)  { transition-delay:  60ms; }
+.char:nth-child(4)  { transition-delay:  90ms; }
+.char:nth-child(5)  { transition-delay: 120ms; }
+.char:nth-child(6)  { transition-delay: 150ms; }
+.char:nth-child(7)  { transition-delay: 180ms; }
+.char:nth-child(8)  { transition-delay: 210ms; }
+.char:nth-child(9)  { transition-delay: 240ms; }
+.char:nth-child(10) { transition-delay: 270ms; }
+
+/* ============================================================
+   GENERAL REVEAL (non-char elements)
+   ============================================================ */
+.reveal-on-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms var(--ease-out),
+              transform 500ms var(--ease-out);
+}
+
+.reveal-on-enter.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   V2 REVEAL CLASSES — blur+scale+translate reveals
+   ============================================================ */
+.rv {
+  opacity: 0;
+  transform: translateY(50px) scale(.92);
+  filter: blur(4px);
+  transition: all 1s cubic-bezier(.175,.885,.32,1.275);
+}
+.rv.in { opacity: 1; transform: none; filter: none; }
+
+.rvl {
+  opacity: 0;
+  transform: translateX(-60px) rotate(-2deg);
+  transition: all .85s cubic-bezier(.175,.885,.32,1.275);
+}
+.rvl.in { opacity: 1; transform: none; }
+
+.rvr {
+  opacity: 0;
+  transform: translateX(60px) rotate(2deg);
+  transition: all .85s cubic-bezier(.175,.885,.32,1.275);
+}
+.rvr.in { opacity: 1; transform: none; }
+
+.pop {
+  opacity: 0;
+  transform: scale(.35) rotate(-14deg);
+  filter: blur(8px);
+  transition: all .9s cubic-bezier(.175,.885,.32,1.275);
+}
+.pop.in { opacity: 1; transform: none; filter: none; }
+
+@keyframes wob {
+  0%,100% { transform: rotate(0deg) translateY(0); }
+  25%     { transform: rotate(.5deg) translateY(-2px); }
+  75%     { transform: rotate(-.4deg) translateY(1px); }
+}
+.wobble { animation: wob 4s ease-in-out infinite var(--wdel, 0s); }
+
+.rv-d1 { transition-delay: 100ms; }
+.rv-d2 { transition-delay: 200ms; }
+.rv-d3 { transition-delay: 300ms; }
+.rv-d4 { transition-delay: 400ms; }
+.rv-d5 { transition-delay: 500ms; }
+
+/* ============================================================
+   BLOB ANIMATIONS
+   ============================================================ */
+@keyframes blob-float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-12px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.blob-wrap {
+  animation: blob-float 8s ease-in-out infinite;
+}
+
+.blob-d1 { animation-delay: -2s; }
+.blob-d2 { animation-delay: -4s; }
+.blob-d3 { animation-delay: -6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-wrap { animation: none; }
+}
