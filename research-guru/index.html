@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - AI Research Assistant for Academics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            background: #fafafa;
+            color: #1a202c;
+            line-height: 1.8;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header - Academic Style */
+        header { background: #fff; padding: 30px 0; border-bottom: 1px solid #e2e8f0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600; color: #2c5282; }
+        .nav-links a { color: #4a5568; text-decoration: none; margin-left: 30px; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+        .nav-links a:hover { color: #2c5282; }
+        
+        /* Hero - Clean Academic */
+        .hero { padding: 120px 0; background: #fff; }
+        .hero h1 { font-size: 3rem; font-weight: 400; margin-bottom: 25px; color: #1a202c; }
+        .hero h1 em { color: #2c5282; font-style: italic; }
+        .hero-sub { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: #718096; margin-bottom: 50px; font-weight: 300; }
+        .hero-cta { display: flex; gap: 20px; }
+        .btn-primary { background: #2c5282; color: #fff; padding: 16px 40px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; display: inline-block; }
+        .btn-secondary { background: #fff; color: #2c5282; padding: 16px 40px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; border: 1px solid #2c5282; display: inline-block; }
+        
+        /* Citation Preview */
+        .citation-preview { background: #f7fafc; padding: 40px; margin-top: 60px; border-radius: 8px; border-left: 4px solid #2c5282; }
+        .citation-preview h3 { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #718096; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .citation { font-size: 1rem; color: #4a5568; margin-bottom: 15px; padding-left: 20px; }
+        .citation span { color: #2c5282; }
+        
+        /* Features - Academic Grid */
+        .features { padding: 100px 0; background: #fafafa; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; font-weight: 400; margin-bottom: 15px; }
+        .section-title p { font-family: 'Inter', sans-serif; color: #718096; font-size: 1.1rem; font-weight: 300; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+        .feature { }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #1a202c; }
+        .feature p { color: #4a5568; font-size: 1.05rem; }
+        
+        /* Export Formats */
+        .export-formats { padding: 80px 0; background: #fff; }
+        .formats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center; }
+        .format { padding: 30px; background: #f7fafc; border-radius: 8px; }
+        .format-icon { font-size: 2rem; margin-bottom: 15px; }
+        .format-name { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #4a5568; font-weight: 500; }
+        
+        /* Pricing - Simple Academic */
+        .pricing { padding: 100px 0; background: #fafafa; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .pricing-card { background: #fff; padding: 50px 40px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .pricing-card h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; }
+        .price { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #2c5282; margin: 25px 0; }
+        .price span { font-size: 1rem; color: #a0aec0; font-weight: 400; }
+        .pricing-card ul { list-style: none; margin: 30px 0; }
+        .pricing-card li { padding: 15px 0; border-bottom: 1px solid #e2e8f0; color: #4a5568; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+        .pricing-card li::before { content: "✓ "; color: #2c5282; font-weight: 600; }
+        .btn-pricing { background: #2c5282; color: #fff; padding: 14px 30px; border-radius: 4px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; display: block; text-align: center; }
+        
+        /* Testimonial - Academic */
+        .testimonial { padding: 100px 0; background: #fff; text-align: center; }
+        .testimonial blockquote { font-size: 1.5rem; font-style: italic; color: #4a5568; max-width: 700px; margin: 0 auto 30px; }
+        .testimonial cite { font-family: 'Inter', sans-serif; font-size: 1rem; color: #718096; font-style: normal; }
+        .testimonial cite span { color: #2c5282; font-weight: 500; }
+        
+        /* Footer */
+        footer { background: #1a202c; padding: 60px 0; color: #a0aec0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 20px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; display: block; margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #2d3748; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#formats">Export Formats</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#academic">Academic Pricing</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>AI-Powered Research Assistant<br><em>for Academics</em></h1>
+            <p class="hero-sub">Literature reviews in minutes. Citations in any format. Peer-reviewed sources only.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-primary">Start Free Trial</a>
+                <a href="#demo" class="btn-secondary">View Sample Output</a>
+            </div>
+            <div class="citation-preview">
+                <h3>Export to Any Format</h3>
+                <div class="citation"><span>APA:</span> Smith, J. & Johnson, A. (2024). Machine Learning in Healthcare. <em>Journal of Medical AI</em>, 15(3), 234-251.</div>
+                <div class="citation"><span>MLA:</span> Smith, John, and Alice Johnson. "Machine Learning in Healthcare." <em>Journal of Medical AI</em>, vol. 15, no. 3, 2024, pp. 234-251.</div>
+                <div class="citation"><span>Chicago:</span> Smith, John, and Alice Johnson. 2024. "Machine Learning in Healthcare." <em>Journal of Medical AI</em> 15 (3): 234-251.</div>
+                <div class="citation"><span>BibTeX:</span> @article{smith2024machine, title={Machine Learning in Healthcare}, author={Smith, J and Johnson, A}, journal={Journal of Medical AI}, volume={15}, number={3}, pages={234--251}, year={2024}}</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Built for Academic Research</h2>
+                <p>Everything researchers need. Nothing they don't.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3>Peer-Reviewed Sources Only</h3>
+                    <p>Access to 100M+ academic papers. Filter by journal impact factor, citation count, and publication date.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Automatic Citations</h3>
+                    <p>Generate citations in APA, MLA, Chicago, Harvard, IEEE, and 50+ other formats. Export to BibTeX, EndNote, Zotero.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Literature Review</h3>
+                    <p>AI summarizes key findings, methodologies, and limitations. Identify research gaps in minutes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Citation Network Analysis</h3>
+                    <p>Visualize citation relationships. Find seminal papers and track research evolution over time.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💾</div>
+                    <h3>Reference Management</h3>
+                    <p>Organize papers into projects. Tag, annotate, and search your personal library.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Integration Ready</h3>
+                    <p>Works with Zotero, Mendeley, EndNote. Overleaf integration for LaTeX users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="export-formats" id="formats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Export to Any Format</h2>
+                <p>Compatible with all major reference managers and journals.</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">APA 7th</div>
+                </div>
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">MLA 9th</div>
+                </div>
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">Chicago</div>
+                </div>
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">Harvard</div>
+                </div>
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">IEEE</div>
+                </div>
+                <div class="format">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">BibTeX</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="container">
+            <blockquote>"Research Guru cut my literature review time from weeks to days. The citation export to Zotero is flawless. Essential for any PhD student."</blockquote>
+            <cite>— Dr. Sarah Chen, <span>Postdoctoral Researcher, MIT</span></cite>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Academic Pricing</h2>
+                <p>Discounted rates for students and researchers. Grant-friendly invoicing.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Student</h3>
+                    <div class="price">$99<span>one-time</span></div>
+                    <ul>
+                        <li>Valid .edu email required</li>
+                        <li>Unlimited searches</li>
+                        <li>All citation formats</li>
+                        <li>Zotero integration</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Purchase</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Professional</h3>
+                    <div class="price">$199<span>one-time</span></div>
+                    <ul>
+                        <li>Researchers & Faculty</li>
+                        <li>Everything in Student</li>
+                        <li>Reference library (10k papers)</li>
+                        <li>Citation network analysis</li>
+                        <li>Priority support</li>
+                        <li>Grant invoicing available</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Purchase</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Lab/Team</h3>
+                    <div class="price">$299<span>one-time</span></div>
+                    <ul>
+                        <li>Up to 10 users</li>
+                        <li>Shared reference library</li>
+                        <li>Collaborative annotations</li>
+                        <li>Admin dashboard</li>
+                        <li>Dedicated support</li>
+                        <li>Site license available</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Purchase</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#formats">Export Formats</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#academic">Academic Discount</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="#guide">Research Guide</a>
+                    <a href="#citation-guide">Citation Guide</a>
+                    <a href="#tutorials">Tutorials</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#docs">Documentation</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#status">Status</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#academic-license">Academic License</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Research Guru. Built for academics, by academics.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

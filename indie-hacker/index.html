@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - The Only AI Tool You'll Ever Buy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Terminal Header */
+        header { background: #161b22; padding: 20px 0; border-bottom: 1px solid #30363d; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; color: #48bb78; }
+        .logo::before { content: "> "; }
+        .nav-links a { color: #8b949e; text-decoration: none; margin-left: 30px; }
+        .nav-links a:hover { color: #48bb78; }
+        
+        /* Hero - Terminal Style */
+        .hero { padding: 100px 0; }
+        .terminal-window { background: #161b22; border-radius: 12px; border: 1px solid #30363d; overflow: hidden; }
+        .terminal-header { background: #0d1117; padding: 15px 20px; border-bottom: 1px solid #30363d; display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .terminal-body { padding: 40px; }
+        .command { color: #48bb78; margin-bottom: 10px; }
+        .command::before { content: "$ "; }
+        .output { color: #8b949e; margin-bottom: 30px; white-space: pre-wrap; }
+        .output .success { color: #48bb78; }
+        .output .highlight { color: #9f7aea; }
+        .hero-content { margin-top: 60px; }
+        .hero h1 { font-family: -apple-system, sans-serif; font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: #f0f6fc; }
+        .hero h1 span { color: #48bb78; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 20px; }
+        .btn-primary { background: #48bb78; color: #0d1117; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        .btn-secondary { background: transparent; color: #48bb78; padding: 18px 45px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #48bb78; display: inline-block; }
+        
+        /* Features */
+        .features { padding: 100px 0; background: #0d1117; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-family: -apple-system, sans-serif; font-size: 2.5rem; margin-bottom: 15px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.2rem; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card { background: #161b22; padding: 35px; border-radius: 12px; border: 1px solid #30363d; }
+        .feature-card:hover { border-color: #48bb78; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-family: -apple-system, sans-serif; font-size: 1.3rem; margin-bottom: 15px; color: #f0f6fc; }
+        .feature-card p { color: #8b949e; }
+        
+        /* Social Proof */
+        .social-proof { padding: 80px 0; background: #161b22; }
+        .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+        .proof-item { }
+        .proof-number { font-size: 3rem; font-weight: 800; color: #48bb78; margin-bottom: 10px; }
+        .proof-label { color: #8b949e; font-size: 0.95rem; }
+        
+        /* Pricing */
+        .pricing { padding: 100px 0; background: #0d1117; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pricing-card { background: #161b22; padding: 50px 40px; border-radius: 12px; border: 1px solid #30363d; position: relative; }
+        .pricing-card.featured { border: 2px solid #48bb78; }
+        .pricing-card.featured::before { content: "BEST VALUE"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #48bb78; color: #0d1117; padding: 5px 20px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
+        .pricing-card h3 { font-family: -apple-system, sans-serif; font-size: 1.4rem; margin-bottom: 10px; color: #f0f6fc; }
+        .price { font-family: -apple-system, sans-serif; font-size: 3.5rem; font-weight: 800; color: #48bb78; margin: 25px 0; }
+        .price span { font-size: 1rem; color: #8b949e; font-weight: 400; }
+        .pricing-card ul { list-style: none; margin: 30px 0; }
+        .pricing-card li { padding: 15px 0; border-bottom: 1px solid #30363d; color: #c9d1d9; font-family: -apple-system, sans-serif; font-size: 0.95rem; }
+        .pricing-card li::before { content: "✓ "; color: #48bb78; font-weight: 700; }
+        .btn-pricing { background: #48bb78; color: #0d1117; padding: 16px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; display: block; text-align: center; font-family: -apple-system, sans-serif; }
+        
+        /* Testimonial */
+        .testimonial { padding: 100px 0; background: #161b22; }
+        .testimonial-card { max-width: 800px; margin: 0 auto; text-align: center; }
+        .testimonial-text { font-size: 1.4rem; color: #c9d1d9; margin-bottom: 30px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; }
+        .testimonial-author span { color: #48bb78; }
+        
+        /* Footer */
+        footer { background: #0d1117; padding: 60px 0; border-top: 1px solid #30363d; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .footer-col h4 { font-family: -apple-system, sans-serif; font-size: 1rem; margin-bottom: 20px; color: #f0f6fc; }
+        .footer-col a { color: #8b949e; text-decoration: none; display: block; margin-bottom: 12px; font-family: -apple-system, sans-serif; font-size: 0.9rem; }
+        .footer-col a:hover { color: #48bb78; }
+        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #30363d; color: #8b949e; font-family: -apple-system, sans-serif; font-size: 0.9rem; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="command">indie-hacker-os install --lifetime</div>
+                    <div class="output">
+<span class="success">✓</span> Downloading AI research tools...
+<span class="success">✓</span> Installing market research module...
+<span class="success">✓</span> Installing competitor analysis...
+<span class="success">✓</span> Installing citation generator...
+<span class="success">✓</span> Setting up lifetime access...
+
+<span class="highlight">Installation complete!</span>
+
+Your AI research infrastructure is ready.
+No subscription. No monthly fees. Forever.
+                    </div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1>The Only AI Tool<br><span>You'll Ever Buy</span></h1>
+                <p class="hero-sub">Lifetime access. No subscription. Built for makers who ship.</p>
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn-primary">Get Lifetime Access</a>
+                    <a href="#demo" class="btn-secondary">Watch Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <div class="proof-number">500+</div>
+                    <div class="proof-label">Indie Hackers</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">4.9★</div>
+                    <div class="proof-label">Product Hunt</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">∞</div>
+                    <div class="proof-label">Updates</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">30d</div>
+                    <div class="proof-label">Money Back</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Built for Solo Founders</h2>
+                <p>Everything you need. Nothing you don't.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Market Research</h3>
+                    <p>Validate ideas in minutes. TAM/SAM/SOM analysis. Competitor landscape. No MBA required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Customer Profiles</h3>
+                    <p>ICP templates. Demographic analysis. Pain point mapping. Know your buyers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Competitor Intel</h3>
+                    <p>Track competitors. Pricing analysis. Feature comparison. Stay ahead.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Content Generator</h3>
+                    <p>Landing pages. Emails. Social posts. Blog posts. Ship faster.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Pricing Strategy</h3>
+                    <p>Price optimization. Tier analysis. Revenue projections. Maximize MRR.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>API Access</h3>
+                    <p>Integrate with your stack. Webhooks. Custom workflows. Build on top.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial" id="testimonials">
+        <div class="container">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I was about to subscribe to 5 different AI tools. Indie Hacker OS does everything for a one-time payment. Best $99 I've spent on my business."</p>
+                <p class="testimonial-author">— Alex K., <span>Bootstrapped to $30k MRR</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple Pricing</h2>
+                <p>One payment. Forever. No BS.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Early Bird</h3>
+                    <div class="price">$49</div>
+                    <ul>
+                        <li>Lifetime access</li>
+                        <li>All current features</li>
+                        <li>Future updates</li>
+                        <li>Community support</li>
+                        <li>First 100 only</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Get Early Bird</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Standard</h3>
+                    <div class="price">$99</div>
+                    <ul>
+                        <li>Lifetime access</li>
+                        <li>All current features</li>
+                        <li>Future updates</li>
+                        <li>Priority support</li>
+                        <li>API access</li>
+                        <li>30-day refund</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Get Lifetime</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Pro</h3>
+                    <div class="price">$149</div>
+                    <ul>
+                        <li>Everything in Standard</li>
+                        <li>1:1 onboarding call</li>
+                        <li>Custom integrations</li>
+                        <li>Direct founder access</li>
+                        <li>Beta features</li>
+                        <li>Co-marketing opp</li>
+                    </ul>
+                    <a href="#purchase" class="btn-pricing">Get Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#changelog">Changelog</a>
+                    <a href="#roadmap">Roadmap</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="#docs">Docs</a>
+                    <a href="#api">API</a>
+                    <a href="#templates">Templates</a>
+                    <a href="#guides">Guides</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <a href="#discord">Discord</a>
+                    <a href="#twitter">Twitter</a>
+                    <a href="#indiehackers">IndieHackers</a>
+                    <a href="#newsletter">Newsletter</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#refund">Refund Policy</a>
+                    <a href="#license">License</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Indie Hacker OS. Built by makers, for makers.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Viewer - CEO Dashboard</title>
+    <title>CEO Dashboard - 3 Brand Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #0f0f0f;
             color: #eaeaea;
             min-height: 100vh;
@@ -29,20 +29,13 @@
         .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
         .project-title { font-size: 1.5rem; font-weight: 600; }
         .status { padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
-        .status.ready { background: #00ff88; color: #000; }
-        .status.pending { background: #f39c12; color: #000; }
-        .status.deploying { background: #00d4ff; color: #000; }
+        .status.live { background: #00ff88; color: #000; }
         .project-description { color: #aaa; margin-bottom: 24px; line-height: 1.6; }
-        .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
-        .metric { background: #0f0f0f; padding: 16px; border-radius: 8px; }
-        .metric-label { font-size: 0.85rem; color: #666; margin-bottom: 8px; }
-        .metric-value { font-size: 1.5rem; font-weight: 700; color: #00ff88; }
-        .deliverables { margin-bottom: 24px; }
-        .deliverables h3 { font-size: 1rem; margin-bottom: 12px; color: #888; }
-        .deliverables ul { list-style: none; }
-        .deliverables li { padding: 8px 0; border-bottom: 1px solid #222; color: #ccc; }
-        .deliverables li:last-child { border-bottom: none; }
-        .deliverables li::before { content: "✓ "; color: #00ff88; }
+        .target-audience { background: #0f0f0f; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .target-label { font-size: 0.85rem; color: #666; margin-bottom: 8px; }
+        .target-value { font-size: 1rem; color: #ccc; }
+        .pricing { display: flex; gap: 10px; margin-bottom: 20px; }
+        .price-tag { background: #0f0f0f; padding: 8px 15px; border-radius: 6px; font-size: 0.9rem; color: #00ff88; }
         .actions { display: flex; gap: 12px; }
         .btn {
             flex: 1;
@@ -69,152 +62,80 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Project Viewer</h1>
-            <p class="subtitle">CEO Dashboard - All Projects, One View</p>
+            <h1>🚀 Brand Portfolio</h1>
+            <p class="subtitle">3 Distinct Brands. 3 Target Markets. 1 Product.</p>
         </header>
 
         <div class="projects-grid">
-            <!-- Privacy Research Assistant -->
+            <!-- Privacy Pro -->
             <div class="project-card">
                 <div class="project-header">
-                    <h2 class="project-title">Privacy Research Assistant</h2>
-                    <span class="status ready">✅ READY</span>
+                    <h2 class="project-title">Privacy Pro</h2>
+                    <span class="status live">● LIVE</span>
                 </div>
                 <p class="project-description">
-                    Self-hosted Perplexity alternative. Privacy-first AI research assistant with SearxNG + Ollama integration. 
-                    Validated $200M ARR market opportunity.
+                    Enterprise AI research platform. SOC2 compliant, self-hosted, zero data leakage. Built for CTOs and security directors.
                 </p>
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Critic Score</div>
-                        <div class="metric-value">97-98/100</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Files Created</div>
-                        <div class="metric-value">39+</div>
-                    </div>
+                <div class="target-audience">
+                    <div class="target-label">TARGET AUDIENCE</div>
+                    <div class="target-value">CTOs, Security Directors, IT Managers @ 50-500 employee companies</div>
                 </div>
-                <div class="deliverables">
-                    <h3>Deliverables</h3>
-                    <ul>
-                        <li>640-line market research report</li>
-                        <li>8-service Docker compose</li>
-                        <li>405 lines production Python (FastAPI)</li>
-                        <li>40+ test suite</li>
-                        <li>18KB+ documentation</li>
-                        <li>3-tier pricing ($99/$299/$999)</li>
-                    </ul>
+                <div class="pricing">
+                    <span class="price-tag">$499/yr</span>
+                    <span class="price-tag">$999/yr</span>
+                    <span class="price-tag">Custom</span>
                 </div>
                 <div class="actions">
-                    <a href="../privacy-research/" class="btn btn-primary">View Landing Page</a>
-                    <a href="../privacy-research/docs/" class="btn btn-secondary">View Docs</a>
+                    <a href="../privacy-pro/" class="btn btn-primary">View Site</a>
+                    <a href="#brief" class="btn btn-secondary">Brand Brief</a>
                 </div>
             </div>
 
-            <!-- PORTAL -->
+            <!-- Research Guru -->
             <div class="project-card">
                 <div class="project-header">
-                    <h2 class="project-title">PORTAL</h2>
-                    <span class="status deploying">🔄 DEPLOYING</span>
+                    <h2 class="project-title">Research Guru</h2>
+                    <span class="status live">● LIVE</span>
                 </div>
                 <p class="project-description">
-                    Cross-platform screen streaming. Stream your device screen to any other device with near-zero latency.
-                    WebRTC-based, P2P direct connection.
+                    AI research assistant for academics. Literature reviews, citation management, peer-reviewed sources only.
                 </p>
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Critic Score</div>
-                        <div class="metric-value">85/100</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Files Created</div>
-                        <div class="metric-value">10+</div>
-                    </div>
+                <div class="target-audience">
+                    <div class="target-label">TARGET AUDIENCE</div>
+                    <div class="target-value">PhD Students, Researchers, Analysts @ Universities & Research Labs</div>
                 </div>
-                <div class="deliverables">
-                    <h3>Deliverables</h3>
-                    <ul>
-                        <li>Signaling server (WebSocket)</li>
-                        <li>WebRTC host page</li>
-                        <li>WebRTC viewer page</li>
-                        <li>Android app code</li>
-                        <li>6 documentation files</li>
-                    </ul>
+                <div class="pricing">
+                    <span class="price-tag">$99</span>
+                    <span class="price-tag">$199</span>
+                    <span class="price-tag">$299</span>
                 </div>
                 <div class="actions">
-                    <a href="../portal/" class="btn btn-primary">View Demo</a>
-                    <a href="../portal/docs/" class="btn btn-secondary">View Docs</a>
+                    <a href="../research-guru/" class="btn btn-primary">View Site</a>
+                    <a href="#brief" class="btn btn-secondary">Brand Brief</a>
                 </div>
             </div>
 
-            <!-- AI-OS -->
+            <!-- Indie Hacker OS -->
             <div class="project-card">
                 <div class="project-header">
-                    <h2 class="project-title">AI-OS</h2>
-                    <span class="status deploying">🔄 DEPLOYING</span>
+                    <h2 class="project-title">Indie Hacker OS</h2>
+                    <span class="status live">● LIVE</span>
                 </div>
                 <p class="project-description">
-                    AI operating system layer. 11 services for clipboard, window management, file management, 
-                    code assistance, email, translation, and research.
+                    Lifetime AI tool for solo founders. Market research, customer profiles, competitor intel. No subscription.
                 </p>
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Critic Score</div>
-                        <div class="metric-value">95/100</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Services</div>
-                        <div class="metric-value">11</div>
-                    </div>
+                <div class="target-audience">
+                    <div class="target-label">TARGET AUDIENCE</div>
+                    <div class="target-value">Solo Founders, Solopreneurs, Makers @ $0-50k MRR</div>
                 </div>
-                <div class="deliverables">
-                    <h3>Deliverables</h3>
-                    <ul>
-                        <li>Orchestrator (natural language)</li>
-                        <li>Clipboard AI (smart management)</li>
-                        <li>Window Manager AI (layouts)</li>
-                        <li>File Manager AI (semantic search)</li>
-                        <li>Code Assistant (explain/generate)</li>
-                        <li>Research AI (Vane integration)</li>
-                    </ul>
+                <div class="pricing">
+                    <span class="price-tag">$49</span>
+                    <span class="price-tag">$99</span>
+                    <span class="price-tag">$149</span>
                 </div>
                 <div class="actions">
-                    <a href="../ai-os/" class="btn btn-primary">View Dashboard</a>
-                    <a href="../ai-os/docs/" class="btn btn-secondary">View API</a>
-                </div>
-            </div>
-
-            <!-- Task Board -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h2 class="project-title">Task Board</h2>
-                    <span class="status ready">✅ LIVE</span>
-                </div>
-                <p class="project-description">
-                    Live task tracking for all projects. Real-time status, deliverables, and deployment progress.
-                </p>
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Status</div>
-                        <div class="metric-value">LIVE</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Projects</div>
-                        <div class="metric-value">3</div>
-                    </div>
-                </div>
-                <div class="deliverables">
-                    <h3>Features</h3>
-                    <ul>
-                        <li>Real-time project status</li>
-                        <li>Deliverable tracking</li>
-                        <li>Deployment progress</li>
-                        <li>CEO review queue</li>
-                    </ul>
-                </div>
-                <div class="actions">
-                    <a href="../tasks/" class="btn btn-primary">View Board</a>
-                    <a href="../" class="btn btn-secondary">Back to Viewer</a>
+                    <a href="../indie-hacker/" class="btn btn-primary">View Site</a>
+                    <a href="#brief" class="btn btn-secondary">Brand Brief</a>
                 </div>
             </div>
         </div>
@@ -223,20 +144,20 @@
         <div class="ceo-actions">
             <h2>📋 CEO Review Actions</h2>
             <p>
-                Click through each project above. For each one, decide: <strong>Approve</strong> (ship it), 
+                Click through each brand above. For each one, decide: <strong>Approve</strong> (ship it), 
                 <strong>Fix</strong> (needs changes), or <strong>Kill</strong> (not worth pursuing).
             </p>
             <p>
-                I'm working continuously. If you don't approve something, I've already moved on to the next task.
-                No waiting. No questions. Just execution.
+                Each brand has distinct positioning, target audience, pricing, and design.
+                Review the brand strategy brief for full details.
             </p>
             <div style="display: flex; gap: 16px; margin-top: 32px;">
-                <a href="../tasks/" class="btn btn-primary" style="flex: 0 0 200px;">View Task Board</a>
-                <a href="mailto:ceo@company.com?subject=Project%20Feedback" class="btn btn-secondary" style="flex: 0 0 200px;">Send Feedback</a>
+                <a href="../brands/BRAND-STRATEGY.md" class="btn btn-primary" style="flex: 0 0 250px;">View Brand Strategy</a>
+                <a href="mailto:ceo@company.com?subject=Brand%20Feedback" class="btn btn-secondary" style="flex: 0 0 200px;">Send Feedback</a>
             </div>
         </div>
 
-        <p class="last-updated">Last Updated: 2026-03-15 14:50 UTC | Next Auto-Refresh: Continuous Deployment</p>
+        <p class="last-updated">Last Updated: 2026-03-15 15:45 UTC | 3 Brands Live</p>
     </div>
 </body>
 </html>
