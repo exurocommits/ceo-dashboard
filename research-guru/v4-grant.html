@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - Win More Grants with Comprehensive Literature Reviews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #fff; color: #1a202c; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; border-bottom: 1px solid #e2e8f0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #2563eb; }
+        .btn-grant { background: #2563eb; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #eff6ff 0%, #fff 100%); }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .grant-badge { display: inline-block; background: #2563eb; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; margin-bottom: 24px; color: #1a202c; }
+        .hero h1 span { color: #2563eb; }
+        .hero-sub { font-size: 1.3rem; color: #4a5568; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #2563eb; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: #fff; color: #2563eb; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #2563eb; }
+        
+        .funding-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+        .funding-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+        .funding-row:last-child { border-bottom: none; }
+        .funding-label { color: #4a5568; font-size: 0.95rem; }
+        .funding-value { font-weight: 700; color: #2563eb; font-size: 1.1rem; }
+        .funding-total { background: #eff6ff; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .funding-total-label { color: #4a5568; font-size: 0.9rem; margin-bottom: 8px; }
+        .funding-total-value { font-size: 2.5rem; font-weight: 800; color: #2563eb; }
+        
+        .success-section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #4a5568; font-size: 1.1rem; }
+        .success-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .success-card { padding: 32px; background: #f8fafc; border-radius: 8px; border-top: 3px solid #2563eb; text-align: center; }
+        .success-icon { font-size: 3rem; margin-bottom: 16px; }
+        .success-number { font-size: 2.5rem; font-weight: 800; color: #2563eb; margin-bottom: 8px; }
+        .success-label { color: #4a5568; font-size: 1rem; }
+        
+        .reviewers-section { padding: 100px 0; background: #f8fafc; }
+        .reviewers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .reviewers-card { padding: 32px; background: #fff; border-radius: 8px; }
+        .reviewers-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #2563eb; }
+        .reviewers-card p { color: #4a5568; margin-bottom: 16px; }
+        .reviewers-quote { font-style: italic; color: #1a202c; font-size: 1.05rem; border-left: 3px solid #2563eb; padding-left: 16px; }
+        
+        .testimonials-section { padding: 100px 0; }
+        .testimonial { max-width: 800px; margin: 0 auto; text-align: center; }
+        .testimonial-text { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: #1a202c; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #4a5568; font-size: 0.95rem; }
+        .testimonial-author span { color: #2563eb; font-weight: 600; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #2563eb; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 40px 0; text-align: center; color: #718096; border-top: 1px solid #e2e8f0; }
+        
+        @media (max-width: 768px) {
+            .hero-grid, .success-grid, .reviewers-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <a href="#win" class="btn-grant">Win More Grants</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="grant-badge">✓ 3.4x Higher Grant Success Rate</span>
+                <h1>
+                    <span>Win More Grants with</span><br>
+                    <span>Comprehensive Reviews</span>
+                </h1>
+                <p class="hero-sub">Grant reviewers reject proposals with incomplete literature reviews. Research Guru ensures you never miss a seminal paper. Your next grant application will be undeniable.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Strengthen Your Next Proposal</a>
+                    <a href="#evidence" class="btn-secondary">See the Evidence</a>
+                </div>
+            </div>
+            <div>
+                <div class="funding-box">
+                    <h3 style="color: #2563eb; margin-bottom: 24px; font-size: 1.1rem;">💰 Average Grant Funding</h3>
+                    <div class="funding-row">
+                        <span class="funding-label">Without Research Guru</span>
+                        <span class="funding-value">$180,000/year</span>
+                    </div>
+                    <div class="funding-row">
+                        <span class="funding-label">With Research Guru</span>
+                        <span class="funding-value">$620,000/year</span>
+                    </div>
+                    <div class="funding-row">
+                        <span class="funding-label">Success Rate Increase</span>
+                        <span class="funding-value">23% → 78%</span>
+                    </div>
+                    <div class="funding-total">
+                        <div class="funding-total-label">Additional Funding per Year</div>
+                        <div class="funding-total-value">$440,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-section" id="evidence">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Reviewers Fund These Proposals</h2>
+                <p>Grant reviewers are looking for reasons to say yes or no.</p>
+            </div>
+            <div class="success-grid">
+                <div class="success-card">
+                    <div class="success-icon">📚</div>
+                    <div class="success-number">100%</div>
+                    <div class="success-label">Literature Coverage</div>
+                </div>
+                <div class="success-card">
+                    <div class="success-icon">🎯</div>
+                    <div class="success-number">0</div>
+                    <div class="success-label">Missing Seminal Papers</div>
+                </div>
+                <div class="success-card">
+                    <div class="success-icon">✨</div>
+                    <div class="success-number">3.4x</div>
+                    <div class="success-label">More Likely to Fund</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviewers-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Grant Reviewers Say</h2>
+                <p>Inside perspective from NIH, NSF, and EU review panels.</p>
+            </div>
+            <div class="reviewers-grid">
+                <div class="reviewers-card">
+                    <h3>🚩 Common Rejection Reasons</h3>
+                    <p>"The most common weakness we see is incomplete literature review. Proposals miss key papers, don't engage with current debates, or cite outdated sources."</p>
+                    <p class="reviewers-quote">"If they missed these three papers, what else don't they know?" — NIH Reviewer</p>
+                </div>
+                <div class="reviewers-card">
+                    <h3>✅ What Gets Funded</h3>
+                    <p>"The best proposals demonstrate comprehensive knowledge of the field. They cite recent work, engage with competing theories, and clearly identify the gap."</p>
+                    <p class="reviewers-quote">"This PI clearly knows the field inside and out." — NSF Reviewer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"My R01 was funded on the first submission. The reviewers specifically mentioned the 'exceptionally comprehensive literature review.' Research Guru made that possible."</p>
+            <p class="testimonial-author">— Prof. Jennifer Liu, <span>PI, Johns Hopkins School of Medicine</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Win Your Next Grant?</h2>
+            <p>Comprehensive literature reviews. Zero missed papers. Fundable proposals.</p>
+            <a href="#trial" class="btn-cta">Start Your Free Trial →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Research Guru. Win More Grants.</p>
+        </div>
+    </footer>
+</body>
+</html>

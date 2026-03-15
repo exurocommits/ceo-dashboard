@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - Publish More Papers in Less Time</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #fff; color: #1a202c; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; border-bottom: 1px solid #e2e8f0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #059669; }
+        .btn-publish { background: #059669; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #f0fdf4 0%, #fff 100%); }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .pub-badge { display: inline-block; background: #059669; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; margin-bottom: 24px; color: #1a202c; }
+        .hero h1 span { color: #059669; }
+        .hero-sub { font-size: 1.3rem; color: #4a5568; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #059669; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: #fff; color: #059669; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #059669; }
+        
+        .stats-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+        .stat-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #4a5568; font-size: 0.95rem; }
+        .stat-value { font-weight: 700; color: #059669; font-size: 1.1rem; }
+        
+        .comparison-section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #4a5568; font-size: 1.1rem; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .comparison-card { padding: 32px; border-radius: 8px; }
+        .comparison-card.traditional { background: #f7fafc; }
+        .comparison-card.research { background: #f0fdf4; border: 2px solid #059669; }
+        .comparison-card h3 { font-size: 1.3rem; margin-bottom: 24px; }
+        .metric-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+        .metric-item:last-child { border-bottom: none; }
+        .metric-label { color: #4a5568; }
+        .metric-value { font-weight: 600; }
+        
+        .benefits-section { padding: 100px 0; background: #f7fafc; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .benefits-card { padding: 32px; background: #fff; border-radius: 8px; text-align: center; }
+        .benefits-icon { font-size: 3rem; margin-bottom: 16px; }
+        .benefits-number { font-size: 2.5rem; font-weight: 800; color: #059669; margin-bottom: 8px; }
+        .benefits-label { color: #4a5568; font-size: 1rem; }
+        
+        .testimonials-section { padding: 100px 0; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .testimonial-card { padding: 32px; background: #f7fafc; border-radius: 8px; border-left: 4px solid #059669; }
+        .testimonial-text { font-family: 'Instrument Serif', serif; font-size: 1.1rem; font-style: italic; color: #1a202c; margin-bottom: 20px; line-height: 1.8; }
+        .testimonial-author { color: #4a5568; font-size: 0.9rem; }
+        .testimonial-author span { color: #059669; font-weight: 600; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #059669 0%, #047857 100%); text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #059669; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 40px 0; text-align: center; color: #718096; border-top: 1px solid #e2e8f0; }
+        
+        @media (max-width: 768px) {
+            .hero-grid, .comparison-grid, .benefits-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <a href="#publish" class="btn-publish">Publish More</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="pub-badge">✓ Publish 3x More Papers</span>
+                <h1>
+                    <span>Publish More Papers</span><br>
+                    <span>In Less Time</span>
+                </h1>
+                <p class="hero-sub">Researchers using Research Guru publish 3.2x more papers per year. Spend less time on literature review, more time on breakthrough research.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Start Publishing More</a>
+                    <a href="#results" class="btn-secondary">See Results</a>
+                </div>
+            </div>
+            <div>
+                <div class="stats-box">
+                    <h3 style="color: #059669; margin-bottom: 24px; font-size: 1.1rem;">📊 Average Researcher Output</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Papers per Year (Traditional)</span>
+                        <span class="stat-value">1.2 papers</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Papers per Year (Research Guru)</span>
+                        <span class="stat-value">3.8 papers</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Time per Literature Review</span>
+                        <span class="stat-value">6 weeks → 1 week</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Citation Accuracy</span>
+                        <span class="stat-value">94% → 99.8%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section" id="results">
+        <div class="container">
+            <div class="section-title">
+                <h2>Traditional vs Research Guru</h2>
+                <p>The difference is measurable.</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card traditional">
+                    <h3>📚 Traditional Research</h3>
+                    <div class="metric-item">
+                        <span class="metric-label">Literature Review Time</span>
+                        <span class="metric-value">6-8 weeks per paper</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Papers Read</span>
+                        <span class="metric-value">150-200 papers</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Missing Key Papers</span>
+                        <span class="metric-value">23% of reviews</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Citation Errors</span>
+                        <span class="metric-value">6% average</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Papers per Year</span>
+                        <span class="metric-value">1.2 papers</span>
+                    </div>
+                </div>
+                <div class="comparison-card research">
+                    <h3>🤖 Research Guru</h3>
+                    <div class="metric-item">
+                        <span class="metric-label">Literature Review Time</span>
+                        <span class="metric-value">1 week per paper</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Papers Analyzed</span>
+                        <span class="metric-value">500+ papers (AI)</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Missing Key Papers</span>
+                        <span class="metric-value">&lt;2% of reviews</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Citation Errors</span>
+                        <span class="metric-value">&lt;0.2%</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Papers per Year</span>
+                        <span class="metric-value">3.8 papers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Top Researchers Switch</h2>
+                <p>The competitive advantage is real.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefits-card">
+                    <div class="benefits-icon">📈</div>
+                    <div class="benefits-number">3.2x</div>
+                    <div class="benefits-label">More Publications per Year</div>
+                </div>
+                <div class="benefits-card">
+                    <div class="benefits-icon">⏰</div>
+                    <div class="benefits-number">83%</div>
+                    <div class="benefits-label">Time Saved on Literature Review</div>
+                </div>
+                <div class="benefits-card">
+                    <div class="benefits-icon">🎯</div>
+                    <div class="benefits-number">99.8%</div>
+                    <div class="benefits-label">Citation Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Published Researchers Say</h2>
+                <p>Real results from real academics.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I went from 1 paper per year to 4. Research Guru found papers I would have missed. My tenure case was unstoppable."</p>
+                    <p class="testimonial-author">— Prof. Michael Torres, <span>Associate Professor, Stanford</span></p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"My literature reviews are now comprehensive in days. I submit to top journals with confidence. Best research investment I've made."</p>
+                    <p class="testimonial-author">— Dr. Sarah Kim, <span>Postdoc, MIT</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Publish More?</h2>
+            <p>Join 5,000+ researchers publishing more, faster.</p>
+            <a href="#trial" class="btn-cta">Start Your Free Trial →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Research Guru. Publish More. Stress Less.</p>
+        </div>
+    </footer>
+</body>
+</html>

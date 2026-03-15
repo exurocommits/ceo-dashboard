@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - Ship Your First Product in 30 Days</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; color: #48bb78; font-family: 'DM Mono', monospace; }
+        .logo::before { content: "> "; }
+        .btn-launch { background: #48bb78; color: #0d1117; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .hero { padding: 100px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .launch-badge { display: inline-block; background: #48bb78; color: #0d1117; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: #f0f6fc; }
+        .hero h1 span { color: #48bb78; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #48bb78; color: #0d1117; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; font-family: 'DM Mono', monospace; }
+        .btn-secondary { background: transparent; color: #48bb78; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #48bb78; font-family: 'DM Mono', monospace; }
+        
+        .timeline-box { background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+        .timeline-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #30363d; }
+        .timeline-row:last-child { border-bottom: none; }
+        .timeline-label { color: #8b949e; font-size: 0.95rem; font-family: 'DM Mono', monospace; }
+        .timeline-value { color: #48bb78; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .roadmap-section { padding: 100px 0; background: #161b22; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.1rem; }
+        .roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .roadmap-card { padding: 32px; background: #0d1117; border-radius: 8px; border: 1px solid #30363d; position: relative; }
+        .roadmap-week { position: absolute; top: 20px; right: 20px; color: #48bb78; font-weight: 600; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .roadmap-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #f0f6fc; padding-right: 60px; }
+        .roadmap-card p { color: #8b949e; font-size: 0.95rem; }
+        
+        .features-section { padding: 100px 0; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .feature-card { padding: 32px; background: #161b22; border-radius: 8px; border: 1px solid #30363d; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #f0f6fc; }
+        .feature-card p { color: #8b949e; font-size: 0.95rem; }
+        
+        .testimonials-section { padding: 100px 0; background: #161b22; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-size: 1.4rem; color: #f0f6fc; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .testimonial-author span { color: #48bb78; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #48bb78 0%, #2f855a 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; color: #0d1117; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; color: #0d1117; }
+        .btn-cta { background: #0d1117; color: #48bb78; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; font-family: 'DM Mono', monospace; }
+        
+        footer { padding: 60px 0; text-align: center; color: #64748b; border-top: 1px solid #30363d; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .roadmap-grid, .features-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <a href="#launch" class="btn-launch">Launch Now</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="launch-badge">30-DAY LAUNCH CHALLENGE</span>
+                <h1>
+                    <span>Ship Your First Product</span><br>
+                    <span>In 30 Days</span>
+                </h1>
+                <p class="hero-sub">Stop planning. Start shipping. Indie Hacker OS gives you the research, validation, and launch roadmap. Your first paying customers in 30 days or less.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Start Your 30-Day Launch</a>
+                    <a href="#roadmap" class="btn-secondary">See the Roadmap</a>
+                </div>
+            </div>
+            <div>
+                <div class="timeline-box">
+                    <h3 style="color: #48bb78; margin-bottom: 24px; font-family: 'DM Mono', monospace;"># 30-Day Launch Timeline</h3>
+                    <div class="timeline-row">
+                        <span class="timeline-label">Days 1-7: Market Research</span>
+                        <span class="timeline-value">✓ Complete</span>
+                    </div>
+                    <div class="timeline-row">
+                        <span class="timeline-label">Days 8-14: Build MVP</span>
+                        <span class="timeline-value">✓ In Progress</span>
+                    </div>
+                    <div class="timeline-row">
+                        <span class="timeline-label">Days 15-21: Beta Testing</span>
+                        <span class="timeline-value">○ Pending</span>
+                    </div>
+                    <div class="timeline-row">
+                        <span class="timeline-label">Days 22-30: Launch & Sell</span>
+                        <span class="timeline-value">○ Pending</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Launch Roadmap</h2>
+                <p>Week by week. Step by step. No guessing.</p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-card">
+                    <span class="roadmap-week">WEEK 1</span>
+                    <h3>Market Research</h3>
+                    <p>AI analyzes your idea. Finds competitors. Identifies gaps. Validates demand. You know if it's worth building before writing code.</p>
+                </div>
+                <div class="roadmap-card">
+                    <span class="roadmap-week">WEEK 2</span>
+                    <h3>Build MVP</h3>
+                    <p>Minimum viable product defined. Core features only. Ship fast. Perfect later. Your first version in 7 days.</p>
+                </div>
+                <div class="roadmap-card">
+                    <span class="roadmap-week">WEEK 3</span>
+                    <h3>Beta Testing</h3>
+                    <p>10 beta users recruited. Feedback collected. Quick iterations. Product-market fit signals clear.</p>
+                </div>
+                <div class="roadmap-card">
+                    <span class="roadmap-week">WEEK 4</span>
+                    <h3>Launch & Sell</h3>
+                    <p>Product Hunt launch. First 100 users. First $1,000. Momentum building. You're an indie hacker now.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything You Need to Launch</h2>
+                <p>No fluff. Just what ships products.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Market Validation</h3>
+                    <p>AI analyzes 1000s of similar products. Tells you what works, what doesn't. Save months of mistakes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>MVP Definition</h3>
+                    <p>Clear feature list. What to build first. What to skip. Focus on what matters for launch.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📢</div>
+                    <h3>Launch Strategy</h3>
+                    <p>Product Hunt playbook. Twitter strategy. Launch checklist. Your path to first 100 users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"I launched in 28 days. First $5k MRR in 60 days. Indie Hacker OS didn't just give me tools—it gave me a roadmap. Best $99 I ever spent."</p>
+            <p class="testimonial-author">— Alex K., <span>Launched SaaS, $60k ARR</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Ship?</h2>
+            <p>30 days from now, you'll have a live product. Or your money back.</p>
+            <a href="#trial" class="btn-cta">Start Your 30-Day Launch →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Indie Hacker OS. Ship More. Stress Less.</p>
+        </div>
+    </footer>
+</body>
+</html>

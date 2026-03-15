@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - Outsmart Your Competition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; color: #3b82f6; font-family: 'DM Mono', monospace; }
+        .logo::before { content: "> "; }
+        .btn-compete { background: #3b82f6; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .hero { padding: 100px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .compete-badge { display: inline-block; background: #3b82f6; color: #fff; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: #f0f6fc; }
+        .hero h1 span { color: #3b82f6; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #3b82f6; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; font-family: 'DM Mono', monospace; }
+        .btn-secondary { background: transparent; color: #3b82f6; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #3b82f6; font-family: 'DM Mono', monospace; }
+        
+        .intel-box { background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+        .intel-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #30363d; }
+        .intel-row:last-child { border-bottom: none; }
+        .intel-label { color: #8b949e; font-size: 0.95rem; font-family: 'DM Mono', monospace; }
+        .intel-value { color: #3b82f6; font-weight: 700; font-size: 1.1rem; font-family: 'DM Mono', monospace; }
+        
+        .features-section { padding: 100px 0; background: #161b22; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.1rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .features-card { padding: 32px; background: #0d1117; border-radius: 8px; border: 1px solid #30363d; }
+        .features-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .features-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #f0f6fc; }
+        .features-card p { color: #8b949e; font-size: 0.95rem; }
+        
+        .competitor-section { padding: 100px 0; }
+        .competitor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .competitor-card { padding: 32px; background: #161b22; border-radius: 8px; }
+        .competitor-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #3b82f6; font-family: 'DM Mono', monospace; }
+        .competitor-card p { color: #8b949e; margin-bottom: 16px; }
+        .competitor-stat { font-size: 1.05rem; color: #f0f6fc; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .testimonials-section { padding: 100px 0; background: #161b22; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-size: 1.4rem; color: #f0f6fc; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .testimonial-author span { color: #3b82f6; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; color: #fff; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; color: #fff; }
+        .btn-cta { background: #fff; color: #3b82f6; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; font-family: 'DM Mono', monospace; }
+        
+        footer { padding: 60px 0; text-align: center; color: #64748b; border-top: 1px solid #30363d; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .features-grid, .competitor-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <a href="#compete" class="btn-compete">Outsmart Them</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="compete-badge">KNOW YOUR ENEMY</span>
+                <h1>
+                    <span>Your Competitors Are</span><br>
+                    <span>Watching You</span>
+                </h1>
+                <p class="hero-sub">While you're building in the dark, they're tracking your every move. Indie Hacker OS flips the script. You see their pricing, features, launch strategy, and weaknesses. Turn the tables.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Get Competitive Intel</a>
+                    <a href="#features" class="btn-secondary">See What You Get</a>
+                </div>
+            </div>
+            <div>
+                <div class="intel-box">
+                    <h3 style="color: #3b82f6; margin-bottom: 24px; font-family: 'DM Mono', monospace;"># Competitor Intel Dashboard</h3>
+                    <div class="intel-row">
+                        <span class="intel-label">Competitors Tracked</span>
+                        <span class="intel-value">12 companies</span>
+                    </div>
+                    <div class="intel-row">
+                        <span class="intel-label">Price Changes Detected</span>
+                        <span class="intel-value">3 this week</span>
+                    </div>
+                    <div class="intel-row">
+                        <span class="intel-label">Feature Gaps Found</span>
+                        <span class="intel-value">7 opportunities</span>
+                    </div>
+                    <div class="intel-row">
+                        <span class="intel-label">Launch Intel</span>
+                        <span class="intel-value">2 launches tracked</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Competitive Intelligence Tools</h2>
+                <p>Everything you need to outmaneuver bigger competitors.</p>
+            </div>
+            <div class="features-grid">
+                <div class="features-card">
+                    <div class="features-icon">👀</div>
+                    <h3>Competitor Tracking</h3>
+                    <p>AI monitors 10+ competitors. Pricing changes. Feature launches. Hiring signals. You know before anyone else.</p>
+                </div>
+                <div class="features-card">
+                    <div class="features-icon">💰</div>
+                    <h3>Pricing Intelligence</h3>
+                    <p>See every competitor's pricing. Positioning analysis. Find the gap. Price strategically. Win on value.</p>
+                </div>
+                <div class="features-card">
+                    <div class="features-icon">🎯</div>
+                    <h3>Feature Gap Analysis</h3>
+                    <p>What they have. What they don't. Your opportunity. Build what matters. Skip what doesn't.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="competitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>David vs Goliath</h2>
+                <p>Small teams can outsmart big companies.</p>
+            </div>
+            <div class="competitor-grid">
+                <div class="competitor-card">
+                    <h3>🐘 Big Competitors</h3>
+                    <p>Slow to move. Bureaucratic decisions. Can't pivot quickly. Miss niche markets. One-size-fits-all approach.</p>
+                    <p class="competitor-stat">Your advantage: Speed & focus</p>
+                </div>
+                <div class="competitor-card">
+                    <h3>🚀 You (Indie Hacker)</h3>
+                    <p>Move fast. Serve niches. Personal touch. Quick iterations. Build exactly what customers want.</p>
+                    <p class="competitor-stat">Your weapon: Intelligence & agility</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"Indie Hacker OS showed me my competitor was raising prices. I positioned as the affordable alternative. Captured 30% of their customers in 3 months."</p>
+            <p class="testimonial-author">— Mike R., <span>SaaS Founder, Competed & Won</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Outsmart Them?</h2>
+            <p>Knowledge is power. Competitive intelligence is victory.</p>
+            <a href="#trial" class="btn-cta">Get Your Intel Report →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Indie Hacker OS. Outsmart. Outmaneuver. Outcompete.</p>
+        </div>
+    </footer>
+</body>
+</html>

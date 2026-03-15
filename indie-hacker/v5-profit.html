@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - Monetization Strategy That Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; color: #22c55e; font-family: 'DM Mono', monospace; }
+        .logo::before { content: "> "; }
+        .btn-profit { background: #22c55e; color: #0d1117; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .hero { padding: 100px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .profit-badge { display: inline-block; background: #22c55e; color: #0d1117; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: #f0f6fc; }
+        .hero h1 span { color: #22c55e; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #22c55e; color: #0d1117; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; font-family: 'DM Mono', monospace; }
+        .btn-secondary { background: transparent; color: #22c55e; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #22c55e; font-family: 'DM Mono', monospace; }
+        
+        .pricing-box { background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+        .pricing-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #30363d; }
+        .pricing-row:last-child { border-bottom: none; }
+        .pricing-label { color: #8b949e; font-size: 0.95rem; font-family: 'DM Mono', monospace; }
+        .pricing-value { color: #22c55e; font-weight: 700; font-size: 1.1rem; font-family: 'DM Mono', monospace; }
+        
+        .models-section { padding: 100px 0; background: #161b22; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.1rem; }
+        .models-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .models-card { padding: 32px; background: #0d1117; border-radius: 8px; border: 1px solid #30363d; }
+        .models-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #22c55e; font-family: 'DM Mono', monospace; }
+        .models-card p { color: #8b949e; margin-bottom: 16px; }
+        .models-stat { font-size: 1.05rem; color: #f0f6fc; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .framework-section { padding: 100px 0; }
+        .framework-steps { max-width: 700px; margin: 0 auto; }
+        .framework-step { display: flex; gap: 24px; margin-bottom: 40px; }
+        .step-number { width: 50px; height: 50px; background: #22c55e; color: #0d1117; border-radius: 50%; text-align: center; line-height: 50px; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; font-family: 'DM Mono', monospace; }
+        .step-content h3 { font-size: 1.2rem; margin-bottom: 8px; color: #22c55e; font-family: 'DM Mono', monospace; }
+        .step-content p { color: #8b949e; }
+        
+        .testimonials-section { padding: 100px 0; background: #161b22; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-size: 1.4rem; color: #f0f6fc; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .testimonial-author span { color: #22c55e; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; color: #0d1117; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; color: #0d1117; }
+        .btn-cta { background: #0d1117; color: #22c55e; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; font-family: 'DM Mono', monospace; }
+        
+        footer { padding: 60px 0; text-align: center; color: #64748b; border-top: 1px solid #30363d; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .models-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <a href="#profit" class="btn-profit">Make Money</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="profit-badge">PROFIT FIRST</span>
+                <h1>
+                    <span>Revenue Is a</span><br>
+                    <span>Design Choice</span>
+                </h1>
+                <p class="hero-sub">Most indie hackers build first, monetize later. That's backwards. Indie Hacker OS helps you design monetization into your product from day one. Profitable from month one.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Design Your Revenue</a>
+                    <a href="#models" class="btn-secondary">See Pricing Models</a>
+                </div>
+            </div>
+            <div>
+                <div class="pricing-box">
+                    <h3 style="color: #22c55e; margin-bottom: 24px; font-family: 'DM Mono', monospace;">$ Revenue Design Framework</h3>
+                    <div class="pricing-row">
+                        <span class="pricing-label">Build First Approach</span>
+                        <span class="pricing-value">$0 for 6 months</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="pricing-label">Profit First Approach</span>
+                        <span class="pricing-value">$5k month 1</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="pricing-label">Pricing Optimization</span>
+                        <span class="pricing-value">2-3x revenue</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="pricing-label">Time to Profitability</span>
+                        <span class="pricing-value">30 days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="models-section" id="models">
+        <div class="container">
+            <div class="section-title">
+                <h2>Proven Monetization Models</h2>
+                <p>What works for indie hackers in 2026.</p>
+            </div>
+            <div class="models-grid">
+                <div class="models-card">
+                    <h3>💳 Subscription (SaaS)</h3>
+                    <p>Recurring revenue. Predictable. Scalable. Best for tools with ongoing value. $10-100/month typical.</p>
+                    <p class="models-stat">Avg LTV: $600-2,400</p>
+                </div>
+                <div class="models-card">
+                    <h3>💎 Lifetime Deals</h3>
+                    <p>Cash injection. Early adopters love it. Use for launch momentum. Limit to first 100 customers.</p>
+                    <p class="models-stat">Avg: $200-500/customer</p>
+                </div>
+                <div class="models-card">
+                    <h3>📦 Usage-Based</h3>
+                    <p>Pay per use. Scales with customer success. Best for APIs, infrastructure, compute-heavy tools.</p>
+                    <p class="models-stat">Avg: $0.01-0.10 per unit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="framework-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>30-Day Profit Framework</h2>
+                <p>From zero to profitable in one month.</p>
+            </div>
+            <div class="framework-steps">
+                <div class="framework-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Week 1: Pricing Research</h3>
+                        <p>AI analyzes 100+ competitors. Finds pricing gaps. Identifies willingness to pay. You know what to charge before launching.</p>
+                    </div>
+                </div>
+                <div class="framework-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Week 2: Pricing Page</h3>
+                        <p>High-converting pricing page. Three tiers. Clear value props. Money-back guarantee. Ready to take payments.</p>
+                    </div>
+                </div>
+                <div class="framework-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Week 3: Beta Customers</h3>
+                        <p>10 beta customers at 50% discount. Validate pricing. Get testimonials. Refine based on feedback.</p>
+                    </div>
+                </div>
+                <div class="framework-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Week 4: Full Launch</h3>
+                        <p>Full price. Public launch. First 100 customers. Profitable from day one. Revenue growing from day one.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"Indie Hacker OS helped me price at $49/month instead of $19. Tripled my revenue with the same number of customers. Pricing is psychology."</p>
+            <p class="testimonial-author">— David K., <span>SaaS Founder, $15k MRR</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Make Money?</h2>
+            <p>Design your revenue. Launch profitable. Scale from there.</p>
+            <a href="#trial" class="btn-cta">Start Your Profit Journey →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Indie Hacker OS. Profit First. Build Second.</p>
+        </div>
+    </footer>
+</body>
+</html>

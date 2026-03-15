@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - Get Your Weekends Back | AI Research Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #f8fafc; color: #1a202c; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; border-bottom: 1px solid #e2e8f0; background: #fff; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #dc2626; }
+        .btn-freedom { background: #dc2626; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #fef2f2 0%, #fff 100%); }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .freedom-badge { display: inline-block; background: #dc2626; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; margin-bottom: 24px; color: #1a202c; }
+        .hero h1 span { color: #dc2626; }
+        .hero-sub { font-size: 1.3rem; color: #4a5568; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #dc2626; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: #fff; color: #dc2626; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #dc2626; }
+        
+        .calendar-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+        .calendar-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+        .calendar-row:last-child { border-bottom: none; }
+        .calendar-label { color: #4a5568; font-size: 0.95rem; }
+        .calendar-before { color: #dc2626; font-weight: 600; text-decoration: line-through; }
+        .calendar-after { color: #059669; font-weight: 700; font-size: 1.1rem; }
+        
+        .before-after-section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #4a5568; font-size: 1.1rem; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .comparison-card { padding: 32px; border-radius: 8px; }
+        .comparison-card.before { background: #fef2f2; border: 2px solid #fca5a5; }
+        .comparison-card.after { background: #f0fdf4; border: 2px solid #6ee7b7; }
+        .comparison-card h3 { font-size: 1.3rem; margin-bottom: 24px; }
+        .day-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+        .day-item:last-child { border-bottom: none; }
+        .day-label { color: #4a5568; }
+        .day-value { font-weight: 600; }
+        
+        .lifestyle-section { padding: 100px 0; background: #f8fafc; }
+        .lifestyle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .lifestyle-card { padding: 32px; background: #fff; border-radius: 8px; text-align: center; }
+        .lifestyle-icon { font-size: 3rem; margin-bottom: 16px; }
+        .lifestyle-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; color: #1a202c; }
+        .lifestyle-desc { color: #4a5568; font-size: 0.95rem; }
+        
+        .testimonials-section { padding: 100px 0; }
+        .testimonial { max-width: 800px; margin: 0 auto; text-align: center; }
+        .testimonial-text { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: #1a202c; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #4a5568; font-size: 0.95rem; }
+        .testimonial-author span { color: #dc2626; font-weight: 600; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #dc2626; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 40px 0; text-align: center; color: #718096; border-top: 1px solid #e2e8f0; }
+        
+        @media (max-width: 768px) {
+            .hero-grid, .comparison-grid, .lifestyle-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <a href="#freedom" class="btn-freedom">Get Your Life Back</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="freedom-badge">✓ Get Your Weekends Back</span>
+                <h1>
+                    <span>When Was the Last Time</span><br>
+                    <span>You Had a Weekend?</span>
+                </h1>
+                <p class="hero-sub">You didn't become a researcher to read papers 70 hours a week. Research Guru gives you 20+ hours back every week. Use it for research. Or your family. Or sleep.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Get Your Time Back</a>
+                    <a href="#compare" class="btn-secondary">See the Difference</a>
+                </div>
+            </div>
+            <div>
+                <div class="calendar-box">
+                    <h3 style="color: #dc2626; margin-bottom: 24px; font-size: 1.1rem;">📅 Your Weekly Schedule</h3>
+                    <div class="calendar-row">
+                        <span class="calendar-label">Literature Review (Before)</span>
+                        <span class="calendar-before">30 hours/week</span>
+                    </div>
+                    <div class="calendar-row">
+                        <span class="calendar-label">Literature Review (After)</span>
+                        <span class="calendar-after">5 hours/week</span>
+                    </div>
+                    <div class="calendar-row">
+                        <span class="calendar-label">Time Saved</span>
+                        <span class="calendar-after">25 hours/week</span>
+                    </div>
+                    <div style="margin-top: 24px; padding-top: 24px; border-top: 2px solid #e2e8f0;">
+                        <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 8px;">That's:</p>
+                        <p style="color: #059669; font-weight: 600;">✓ 3 extra days with your family</p>
+                        <p style="color: #059669; font-weight: 600;">✓ 5 workouts you've been skipping</p>
+                        <p style="color: #059669; font-weight: 600;">✓ Actually finishing that book</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="before-after-section" id="compare">
+        <div class="container">
+            <div class="section-title">
+                <h2>Before vs After Research Guru</h2>
+                <p>Two different lives. Your choice.</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card before">
+                    <h3>😰 Before: Research Grind</h3>
+                    <div class="day-item">
+                        <span class="day-label">Monday-Friday</span>
+                        <span class="day-value">8 hours reading papers</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Saturday</span>
+                        <span class="day-value">6 hours catching up</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Sunday</span>
+                        <span class="day-value">4 hours + anxiety</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Evenings</span>
+                        <span class="day-value">Too tired for anything</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Relationships</span>
+                        <span class="day-value">Suffering</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Health</span>
+                        <span class="day-value">No exercise, poor sleep</span>
+                    </div>
+                </div>
+                <div class="comparison-card after">
+                    <h3>😌 After: Research Balance</h3>
+                    <div class="day-item">
+                        <span class="day-label">Monday-Friday</span>
+                        <span class="day-value">1 hour AI summaries</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Saturday</span>
+                        <span class="day-value">Free for family/fun</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Sunday</span>
+                        <span class="day-value">Actually restful</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Evenings</span>
+                        <span class="day-value">Energy for life</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Relationships</span>
+                        <span class="day-value">Thriving again</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day-label">Health</span>
+                        <span class="day-value">Gym 4x/week, sleeping 8hrs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lifestyle-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Researchers Do With Their Time Back</h2>
+                <p>25 hours/week opens up possibilities.</p>
+            </div>
+            <div class="lifestyle-grid">
+                <div class="lifestyle-card">
+                    <div class="lifestyle-icon">👨‍👩‍👧‍👦</div>
+                    <div class="lifestyle-title">Family Time</div>
+                    <div class="lifestyle-desc">Dinner with kids. Date nights. Actually being present instead of thinking about papers.</div>
+                </div>
+                <div class="lifestyle-card">
+                    <div class="lifestyle-icon">💪</div>
+                    <div class="lifestyle-title">Health & Fitness</div>
+                    <div class="lifestyle-desc">Regular workouts. Meal prep. Sleep schedule. The basics you've been neglecting.</div>
+                </div>
+                <div class="lifestyle-card">
+                    <div class="lifestyle-icon">🎨</div>
+                    <div class="lifestyle-title">Actual Research</div>
+                    <div class="lifestyle-desc">The creative work you became a researcher for. Not just reading—creating.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"I got my Saturdays back. My daughter has me back. My wife says I'm a different person. Research Guru didn't just save my research—it saved my marriage."</p>
+            <p class="testimonial-author">— Prof. David Park, <span>Associate Professor, UC Berkeley</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Get Your Life Back?</h2>
+            <p>25 hours/week. Every week. Forever.</p>
+            <a href="#trial" class="btn-cta">Start Your Free Trial →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Research Guru. Get Your Weekends Back.</p>
+        </div>
+    </footer>
+</body>
+</html>

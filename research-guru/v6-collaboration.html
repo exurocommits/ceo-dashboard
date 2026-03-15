@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - Collaborate Better with AI-Powered Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #f0f4f8; color: #1a202c; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; border-bottom: 1px solid #e2e8f0; background: #fff; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #7c3aed; }
+        .btn-collab { background: #7c3aed; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #faf5ff 0%, #fff 100%); }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .collab-badge { display: inline-block; background: #7c3aed; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; margin-bottom: 24px; }
+        .hero h1 span { color: #7c3aed; }
+        .hero-sub { font-size: 1.3rem; color: #4a5568; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #7c3aed; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: #fff; color: #7c3aed; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #7c3aed; }
+        
+        .team-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+        .team-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+        .team-row:last-child { border-bottom: none; }
+        .team-label { color: #4a5568; font-size: 0.95rem; }
+        .team-value { font-weight: 700; color: #7c3aed; font-size: 1.1rem; }
+        
+        .benefits-section { padding: 100px 0; background: #fff; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #4a5568; font-size: 1.1rem; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .benefits-card { padding: 32px; background: #faf5ff; border-radius: 8px; border-left: 4px solid #7c3aed; }
+        .benefits-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: #7c3aed; }
+        .benefits-card p { color: #4a5568; margin-bottom: 16px; }
+        .benefits-stat { font-size: 0.95rem; color: #718096; font-style: italic; }
+        
+        .workflow-section { padding: 100px 0; background: #faf5ff; }
+        .workflow-steps { max-width: 700px; margin: 0 auto; }
+        .workflow-step { display: flex; gap: 24px; margin-bottom: 40px; }
+        .step-number { width: 50px; height: 50px; background: #7c3aed; color: #fff; border-radius: 50%; text-align: center; line-height: 50px; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; }
+        .step-content h3 { font-size: 1.2rem; margin-bottom: 8px; color: #7c3aed; }
+        .step-content p { color: #4a5568; }
+        
+        .testimonials-section { padding: 100px 0; background: #fff; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .testimonial-card { padding: 32px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #7c3aed; }
+        .testimonial-text { font-family: 'Instrument Serif', serif; font-size: 1.1rem; font-style: italic; color: #1a202c; margin-bottom: 20px; line-height: 1.8; }
+        .testimonial-author { color: #4a5568; font-size: 0.9rem; }
+        .testimonial-author span { color: #7c3aed; font-weight: 600; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #7c3aed 0%, #6b46c1 100%); text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #7c3aed; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 40px 0; text-align: center; color: #718096; border-top: 1px solid #e2e8f0; }
+        
+        @media (max-width: 768px) {
+            .hero-grid, .benefits-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <a href="#collab" class="btn-collab">Collaborate Better</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="collab-badge">✓ 3x More Collaborative Papers</span>
+                <h1>
+                    <span>Research Is a</span><br>
+                    <span>Team Sport</span>
+                </h1>
+                <p class="hero-sub">Solo research is slow research. Research Guru keeps your team synchronized, ensures everyone's up to speed, and accelerates collaborative publications.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Start Collaborating</a>
+                    <a href="#workflow" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+            <div>
+                <div class="team-box">
+                    <h3 style="color: #7c3aed; margin-bottom: 24px; font-size: 1.1rem;">👥 Team Collaboration Metrics</h3>
+                    <div class="team-row">
+                        <span class="team-label">Papers per Year (Solo)</span>
+                        <span class="team-value">1.2 papers</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-label">Papers per Year (Team)</span>
+                        <span class="team-value">4.8 papers</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-label">Time to Publication</span>
+                        <span class="team-value">6 months → 2 months</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-label">Team Satisfaction</span>
+                        <span class="team-value">94% would recommend</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Research Teams Love It</h2>
+                <p>Collaboration without the coordination headache.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefits-card">
+                    <h3>📚 Shared Literature Library</h3>
+                    <p>One search, whole team benefits. AI summarizes papers for everyone. No duplicate work. Everyone starts from the same knowledge base.</p>
+                    <p class="benefits-stat">"My lab saves 20 hours/week on lit review alone." — Lab Director, Stanford</p>
+                </div>
+                <div class="benefits-card">
+                    <h3>🎯 Automatic Paper Assignments</h3>
+                    <p>AI identifies relevant papers for each team member based on their expertise. Right paper, right person, every time.</p>
+                    <p class="benefits-stat">"No more 'who's reading this?' emails." — Postdoc, MIT</p>
+                </div>
+                <div class="benefits-card">
+                    <h3>📝 Collaborative Annotations</h3>
+                    <p>Team members annotate papers together. Build shared understanding. Argument tracking. Citation chains visible to all.</p>
+                    <p class="benefits-stat">"Our paper quality improved dramatically." — Professor, Harvard</p>
+                </div>
+                <div class="benefits-card">
+                    <h3>⚡ Faster Publication Cycles</h3>
+                    <p>Literature review done in days, not months. Writing starts sooner. Submissions happen faster. Publications accumulate.</p>
+                    <p class="benefits-stat">"4 papers in 18 months vs 1 paper in 2 years before." — PhD Student, Berkeley</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="workflow-section" id="workflow">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Teams Use Research Guru</h2>
+                <p>From idea to publication in 4 steps.</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>PI Defines Research Question</h3>
+                        <p>Principal investigator enters the research question. AI identifies key themes, relevant subfields, and potential gaps.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Team Gets Assigned Papers</h3>
+                        <p>Each team member receives curated paper list based on their expertise. AI ensures comprehensive coverage without overlap.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Collaborative Annotation Phase</h3>
+                        <p>Team reads, annotates, discusses. Shared library builds. Connections emerge. Research direction refines.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Writing & Publication</h3>
+                        <p>Everyone's up to speed. Writing assignments clear. Citations perfect. Submit to top journals with confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research Teams Say</h2>
+                <p>Real collaboration stories from real labs.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Our lab went from 2 papers/year to 8. Research Guru synchronized our literature review process. Best investment we made."</p>
+                    <p class="testimonial-author">— Prof. Sarah Kim, <span>Lab Director, Computational Biology, Stanford</span></p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a PhD student, I'm finally contributing meaningfully to lab papers. Research Guru leveled the playing field. I know the lit as well as the postdocs."</p>
+                    <p class="testimonial-author">— Marcus Chen, <span>PhD Candidate, Computer Science, MIT</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Collaborate Better?</h2>
+            <p>Join 500+ research teams publishing more, together.</p>
+            <a href="#trial" class="btn-cta">Start Your Team Trial →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Research Guru. Research Is Better Together.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - Build Your Freedom Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; color: #f97316; font-family: 'DM Mono', monospace; }
+        .logo::before { content: "> "; }
+        .btn-freedom { background: #f97316; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 100%); }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .freedom-badge { display: inline-block; background: #f97316; color: #fff; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: #f0f6fc; }
+        .hero h1 span { color: #f97316; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #f97316; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; font-family: 'DM Mono', monospace; }
+        .btn-secondary { background: transparent; color: #f97316; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #f97316; font-family: 'DM Mono', monospace; }
+        
+        .lifestyle-box { background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+        .lifestyle-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #30363d; }
+        .lifestyle-row:last-child { border-bottom: none; }
+        .lifestyle-label { color: #8b949e; font-size: 0.95rem; font-family: 'DM Mono', monospace; }
+        .lifestyle-value { color: #f97316; font-weight: 700; font-size: 1.1rem; font-family: 'DM Mono', monospace; }
+        
+        .comparison-section { padding: 100px 0; background: #161b22; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.1rem; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .comparison-card { padding: 32px; border-radius: 8px; }
+        .comparison-card.trap { background: #0d1117; border: 2px solid #ef4444; }
+        .comparison-card.freedom { background: #0d1117; border: 2px solid #f97316; }
+        .comparison-card h3 { font-size: 1.3rem; margin-bottom: 24px; color: #f0f6fc; }
+        .lifestyle-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #30363d; }
+        .lifestyle-item:last-child { border-bottom: none; }
+        .lifestyle-item-label { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .lifestyle-item-value { font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .principles-section { padding: 100px 0; }
+        .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .principles-card { padding: 32px; background: #161b22; border-radius: 8px; border-top: 3px solid #f97316; text-align: center; }
+        .principles-icon { font-size: 3rem; margin-bottom: 16px; }
+        .principles-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #f0f6fc; }
+        .principles-card p { color: #8b949e; font-size: 0.95rem; }
+        
+        .testimonials-section { padding: 100px 0; background: #161b22; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-size: 1.4rem; color: #f0f6fc; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .testimonial-author span { color: #f97316; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; color: #fff; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; color: #fff; }
+        .btn-cta { background: #fff; color: #f97316; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; font-family: 'DM Mono', monospace; }
+        
+        footer { padding: 60px 0; text-align: center; color: #64748b; border-top: 1px solid #30363d; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .comparison-grid, .principles-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <a href="#freedom" class="btn-freedom">Build Freedom</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="freedom-badge">LIFESTYLE DESIGN</span>
+                <h1>
+                    <span>You Didn't Become an</span><br>
+                    <span>Indie Hacker for This</span>
+                </h1>
+                <p class="hero-sub">60-hour weeks. Customer support at 2 AM. Vacation? What's that? Indie Hacker OS helps you build a business that serves your life, not consumes it.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Build Your Freedom</a>
+                    <a href="#compare" class="btn-secondary">See the Difference</a>
+                </div>
+            </div>
+            <div>
+                <div class="lifestyle-box">
+                    <h3 style="color: #f97316; margin-bottom: 24px; font-family: 'DM Mono', monospace;"># Freedom Business Metrics</h3>
+                    <div class="lifestyle-row">
+                        <span class="lifestyle-label">Work Hours/Week</span>
+                        <span class="lifestyle-value">25-30 hours</span>
+                    </div>
+                    <div class="lifestyle-row">
+                        <span class="lifestyle-label">Location</span>
+                        <span class="lifestyle-value">Anywhere</span>
+                    </div>
+                    <div class="lifestyle-row">
+                        <span class="lifestyle-label">Revenue</span>
+                        <span class="lifestyle-value">$10-30k/month</span>
+                    </div>
+                    <div class="lifestyle-row">
+                        <span class="lifestyle-label">Team</span>
+                        <span class="lifestyle-value">Solo or 1-2 VA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section" id="compare">
+        <div class="container">
+            <div class="section-title">
+                <h2>Two Paths. One Choice.</h2>
+                <p>Build a job or build a freedom business.</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card trap">
+                    <h3>❌ The Trap (Most Indie Hackers)</h3>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Work Hours</span>
+                        <span class="lifestyle-item-value" style="color: #ef4444;">60-80 hrs/week</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Vacation</span>
+                        <span class="lifestyle-item-value" style="color: #ef4444;">2 weeks/year</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Customer Support</span>
+                        <span class="lifestyle-item-value" style="color: #ef4444;">You, 24/7</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Revenue</span>
+                        <span class="lifestyle-item-value" style="color: #ef4444;">$5-10k/month</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Outcome</span>
+                        <span class="lifestyle-item-value" style="color: #ef4444;">Expensive job</span>
+                    </div>
+                </div>
+                <div class="comparison-card freedom">
+                    <h3>✅ Freedom Business (Your Path)</h3>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Work Hours</span>
+                        <span class="lifestyle-item-value" style="color: #f97316;">25-30 hrs/week</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Vacation</span>
+                        <span class="lifestyle-item-value" style="color: #f97316;">Unlimited</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Customer Support</span>
+                        <span class="lifestyle-item-value" style="color: #f97316;">VA + automation</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Revenue</span>
+                        <span class="lifestyle-item-value" style="color: #f97316;">$10-30k/month</span>
+                    </div>
+                    <div class="lifestyle-item">
+                        <span class="lifestyle-item-label">Outcome</span>
+                        <span class="lifestyle-item-value" style="color: #f97316;">True freedom</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Freedom Business Principles</h2>
+                <p>The rules that keep you free.</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principles-card">
+                    <div class="principles-icon">🎯</div>
+                    <h3>Niche Down</h3>
+                    <p>Small market, less competition. Charge premium. Less support. More freedom. Riches are in the niches.</p>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-icon">🤖</div>
+                    <h3>Automate Ruthlessly</h3>
+                    <p>If it's repeatable, automate it. Onboarding. Support. Billing. Your time is for strategy, not tasks.</p>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-icon">🚫</div>
+                    <h3>Say No Often</h3>
+                    <p>Feature requests. Custom work. "Quick calls". Every yes is a chain. Protect your freedom fiercely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"Indie Hacker OS helped me fire 80% of my customers. Revenue stayed the same. Work hours dropped from 60 to 25. I got my life back."</p>
+            <p class="testimonial-author">— Tom H., <span>SaaS Founder, 25 hrs/week, Traveling Full-Time</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Build Freedom?</h2>
+            <p>A business that serves your life. Not consumes it.</p>
+            <a href="#trial" class="btn-cta">Start Your Freedom Journey →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Indie Hacker OS. Build Less. Live More.</p>
+        </div>
+    </footer>
+</body>
+</html>

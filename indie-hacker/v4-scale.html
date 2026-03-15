@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Hacker OS - Scale Without Burnout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; color: #a855f7; font-family: 'DM Mono', monospace; }
+        .logo::before { content: "> "; }
+        .btn-scale { background: #a855f7; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'DM Mono', monospace; }
+        
+        .hero { padding: 100px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .scale-badge { display: inline-block; background: #a855f7; color: #fff; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; color: #f0f6fc; }
+        .hero h1 span { color: #a855f7; }
+        .hero-sub { font-size: 1.3rem; color: #8b949e; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #a855f7; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; font-family: 'DM Mono', monospace; }
+        .btn-secondary { background: transparent; color: #a855f7; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #a855f7; font-family: 'DM Mono', monospace; }
+        
+        .growth-box { background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+        .growth-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #30363d; }
+        .growth-row:last-child { border-bottom: none; }
+        .growth-label { color: #8b949e; font-size: 0.95rem; font-family: 'DM Mono', monospace; }
+        .growth-value { color: #a855f7; font-weight: 700; font-size: 1.1rem; font-family: 'DM Mono', monospace; }
+        
+        .principles-section { padding: 100px 0; background: #161b22; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; color: #f0f6fc; }
+        .section-title p { color: #8b949e; font-size: 1.1rem; }
+        .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .principles-card { padding: 32px; background: #0d1117; border-radius: 8px; border-top: 3px solid #a855f7; }
+        .principles-icon { font-size: 3rem; margin-bottom: 16px; }
+        .principles-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #f0f6fc; }
+        .principles-card p { color: #8b949e; font-size: 0.95rem; }
+        
+        .journey-section { padding: 100px 0; }
+        .journey-steps { max-width: 700px; margin: 0 auto; }
+        .journey-step { display: flex; gap: 24px; margin-bottom: 40px; }
+        .step-stage { width: 80px; text-align: center; flex-shrink: 0; }
+        .stage-revenue { font-size: 1.5rem; font-weight: 800; color: #a855f7; font-family: 'DM Mono', monospace; }
+        .stage-label { font-size: 0.85rem; color: #8b949e; font-family: 'DM Mono', monospace; }
+        .step-content h3 { font-size: 1.2rem; margin-bottom: 8px; color: #a855f7; font-family: 'DM Mono', monospace; }
+        .step-content p { color: #8b949e; }
+        
+        .testimonials-section { padding: 100px 0; background: #161b22; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-size: 1.4rem; color: #f0f6fc; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #8b949e; font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+        .testimonial-author span { color: #a855f7; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; color: #fff; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; color: #fff; }
+        .btn-cta { background: #fff; color: #a855f7; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; font-family: 'DM Mono', monospace; }
+        
+        footer { padding: 60px 0; text-align: center; color: #64748b; border-top: 1px solid #30363d; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .principles-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">indie-hacker-os</div>
+            <a href="#scale" class="btn-scale">Scale Smart</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="scale-badge">GROWTH WITHOUT BURNOUT</span>
+                <h1>
+                    <span>Scale Your Business</span><br>
+                    <span>Not Your Stress</span>
+                </h1>
+                <p class="hero-sub">$0 to $100k ARR doesn't require 80-hour weeks. Indie Hacker OS shows you the systems, automation, and decisions that scale revenue without scaling your workload.</p>
+                <div class="hero-cta">
+                    <a href="#start" class="btn-primary">Scale Without Burnout</a>
+                    <a href="#journey" class="btn-secondary">See the Path</a>
+                </div>
+            </div>
+            <div>
+                <div class="growth-box">
+                    <h3 style="color: #a855f7; margin-bottom: 24px; font-family: 'DM Mono', monospace;"># Sustainable Growth Metrics</h3>
+                    <div class="growth-row">
+                        <span class="growth-label">Revenue Growth</span>
+                        <span class="growth-value">15-25%/month</span>
+                    </div>
+                    <div class="growth-row">
+                        <span class="growth-label">Work Hours</span>
+                        <span class="growth-value">30-40 hrs/week</span>
+                    </div>
+                    <div class="growth-row">
+                        <span class="growth-label">Team Size</span>
+                        <span class="growth-value">Solo → 2-3</span>
+                    </div>
+                    <div class="growth-row">
+                        <span class="growth-label">Founder Stress</span>
+                        <span class="growth-value">Manageable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Scale Smart, Not Hard</h2>
+                <p>The principles that separate sustainable growth from burnout.</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principles-card">
+                    <div class="principles-icon">🤖</div>
+                    <h3>Automate Everything</h3>
+                    <p>Customer onboarding. Support tickets. Social media. Billing. If it's repeatable, automate it. Your time is for strategy.</p>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-icon">📊</div>
+                    <h3>Metrics That Matter</h3>
+                    <p>MRR. Churn. LTV. CAC. Ignore vanity metrics. Focus on what drives decisions. Data-driven growth, not guesswork.</p>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-icon">🎯</div>
+                    <h3>Niche Domination</h3>
+                    <p>Don't compete broadly. Own a niche. Expand from strength. Small pond, big fish. Then find bigger ponds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="journey-section" id="journey">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Growth Journey</h2>
+                <p>Stage by stage. Decision by decision.</p>
+            </div>
+            <div class="journey-steps">
+                <div class="journey-step">
+                    <div class="step-stage">
+                        <div class="stage-revenue">$0-10k</div>
+                        <div class="stage-label">ARR</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Stage 1: Validation</h3>
+                        <p>Find product-market fit. First 100 customers. Manual everything. Learn what customers actually want. Survive.</p>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-stage">
+                        <div class="stage-revenue">$10-50k</div>
+                        <div class="stage-label">ARR</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Stage 2: Systems</h3>
+                        <p>Build systems. Automate onboarding. Document processes. First hire (VA or support). Scale without you.</p>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-stage">
+                        <div class="stage-revenue">$50-100k</div>
+                        <div class="stage-label">ARR</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Stage 3: Optimization</h3>
+                        <p>Optimize conversion. Reduce churn. Increase LTV. Second hire (marketing or dev). Work less, earn more.</p>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-stage">
+                        <div class="stage-revenue">$100k+</div>
+                        <div class="stage-label">ARR</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Stage 4: Freedom</h3>
+                        <p>Business runs without you. Strategic decisions only. 4-day weeks. You built a business, not a job.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"Hit $80k ARR working 35 hours/week. Indie Hacker OS taught me to say no, automate ruthlessly, and focus on high-leverage work. Best business decision I made."</p>
+            <p class="testimonial-author">— Jessica T., <span>SaaS Founder, $80k ARR, 35 hrs/week</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Ready to Scale Smart?</h2>
+            <p>Grow your revenue. Protect your sanity.</p>
+            <a href="#trial" class="btn-cta">Start Your Sustainable Growth →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Indie Hacker OS. Scale Smart. Live Well.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Guru - Survive the Tenure Track | Academic Research Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #1a1a2e; color: #eaeaea; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; border-bottom: 1px solid #333; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #e94560; }
+        .btn-tenure { background: #e94560; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; }
+        .warning-box { background: #16213e; border-left: 4px solid #e94560; padding: 20px; margin-bottom: 40px; border-radius: 6px; }
+        .warning-box p { color: #e94560; font-size: 1.1rem; font-weight: 600; }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; margin-bottom: 24px; }
+        .hero h1 span { color: #e94560; }
+        .hero-sub { font-size: 1.3rem; color: #888; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #e94560; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: transparent; color: #e94560; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #e94560; }
+        
+        .stats-box { background: #16213e; padding: 40px; border-radius: 12px; }
+        .stat-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #333; }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #888; font-size: 0.95rem; }
+        .stat-value { font-weight: 700; color: #e94560; font-size: 1.1rem; }
+        
+        .timeline-section { padding: 100px 0; background: #0f0f23; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #888; font-size: 1.1rem; }
+        .timeline { position: relative; padding-left: 40px; max-width: 700px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: #333; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before { content: ''; position: absolute; left: -34px; width: 30px; height: 30px; background: #e94560; border-radius: 50%; }
+        .timeline-item.year-1::before { content: 'Y1'; }
+        .timeline-item.year-2::before { content: 'Y2'; }
+        .timeline-item.year-3::before { content: 'Y3'; }
+        .timeline-item.year-4::before { content: 'Y4'; }
+        .timeline-item.year-5::before { content: 'Y5'; }
+        .timeline-item.year-6::before { content: 'Y6'; }
+        .timeline-item h3 { font-size: 1.2rem; margin-bottom: 8px; color: #e94560; }
+        .timeline-item p { color: #888; }
+        
+        .survival-section { padding: 100px 0; }
+        .survival-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .survival-card { padding: 32px; background: #16213e; border-radius: 8px; border-top: 3px solid #e94560; }
+        .survival-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .survival-card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .survival-card p { color: #888; font-size: 0.95rem; }
+        
+        .testimonials-section { padding: 100px 0; background: #0f0f23; text-align: center; }
+        .testimonial { max-width: 800px; margin: 0 auto; }
+        .testimonial-text { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: #eaeaea; margin-bottom: 24px; line-height: 1.8; }
+        .testimonial-author { color: #888; font-size: 0.95rem; }
+        .testimonial-author span { color: #e94560; font-weight: 600; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #e94560 0%, #c73e54 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #e94560; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 40px 0; text-align: center; color: #666; border-top: 1px solid #333; }
+        
+        @media (max-width: 768px) {
+            .survival-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Research Guru</div>
+            <a href="#tenure" class="btn-tenure">Survive Tenure</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="warning-box">
+                <p>⚠️ Tenure Reality: 50% of assistant professors are denied tenure. Don't be a statistic.</p>
+            </div>
+            <h1>
+                <span>The Tenure Track Is</span><br>
+                <span>A Killing Field</span>
+            </h1>
+            <p class="hero-sub">Publish or perish isn't a metaphor. It's your career. Research Guru gives you the publishing edge you need to survive.</p>
+            <div class="hero-cta">
+                <a href="#start" class="btn-primary">Secure Your Tenure</a>
+                <a href="#timeline" class="btn-secondary">See the Path</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Tenure Timeline</h2>
+                <p>6 years to prove yourself. Make every year count.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item year-1">
+                    <h3>Year 1: Survival Mode</h3>
+                    <p>Teaching load. Service commitments. Setting up lab. Research Guru finds your research agenda while you survive.</p>
+                </div>
+                <div class="timeline-item year-2">
+                    <h3>Year 2: First Publications</h3>
+                    <p>2-3 papers minimum. Research Guru cuts lit review time from months to weeks. You publish while others are still reading.</p>
+                </div>
+                <div class="timeline-item year-3">
+                    <h3>Year 3: Mid-Tenure Review</h3>
+                    <p>First real evaluation. 6+ papers. 1 grant. Research Guru ensures comprehensive reviews. You pass with flying colors.</p>
+                </div>
+                <div class="timeline-item year-4">
+                    <h3>Year 4: Momentum Building</h3>
+                    <p>10+ papers. 2-3 grants. National reputation forming. Research Guru keeps you ahead of publication curve.</p>
+                </div>
+                <div class="timeline-item year-5">
+                    <h3>Year 5: Tenure File Ready</h3>
+                    <p>15+ papers. Multiple grants. External letters lined up. Research Guru made comprehensive reviews possible.</p>
+                </div>
+                <div class="timeline-item year-6">
+                    <h3>Year 6: Tenure Decision</h3>
+                    <p>File submitted. Committee impressed. You're not just surviving—you're thriving. Tenure granted.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="survival-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Assistant Professors Fail</h2>
+                <p>Don't make these fatal mistakes.</p>
+            </div>
+            <div class="survival-grid">
+                <div class="survival-card">
+                    <div class="survival-icon">📚</div>
+                    <h3>Incomplete Literature Reviews</h3>
+                    <p>Reviewers reject papers missing key citations. Research Guru finds every relevant paper. Zero missed citations.</p>
+                </div>
+                <div class="survival-card">
+                    <div class="survival-icon">⏰</div>
+                    <h3>Too Slow to Publish</h3>
+                    <p>Tenure clock doesn't stop. Research Guru cuts research time 80%. You publish 3x faster than peers.</p>
+                </div>
+                <div class="survival-card">
+                    <div class="survival-icon">💰</div>
+                    <h3>No Grant Funding</h3>
+                    <p>No grants = no tenure at R1 institutions. Research Guru strengthens proposals. 3.4x higher success rate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container testimonial">
+            <p class="testimonial-text">"I got tenure at 32. Youngest in my department's history. Research Guru let me publish 18 papers in 6 years while teaching 4 courses. Game changer."</p>
+            <p class="testimonial-author">— Dr. Marcus Chen, <span>Associate Professor, UC Berkeley (Tenured 2025)</span></p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="start">
+        <div class="container">
+            <h2>Tenure or Perish</h2>
+            <p>50% don't make it. You will.</p>
+            <a href="#trial" class="btn-cta">Start Your Tenure Journey →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Research Guru. Survive the Tenure Track.</p>
+        </div>
+    </footer>
+</body>
+</html>

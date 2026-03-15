@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Pro - Complete Control Over Your AI Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Sora', sans-serif; background: #0f172a; color: #f1f5f9; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 24px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo span { color: #3b82f6; }
+        .btn-control { background: #3b82f6; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        
+        .hero { padding: 100px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-label { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: #3b82f6; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; line-height: 1.1; }
+        .hero h1 span { color: #3b82f6; }
+        .hero-sub { font-size: 1.3rem; color: #94a3b8; margin-bottom: 40px; }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 60px; }
+        .btn-primary { background: #3b82f6; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+        .btn-secondary { background: transparent; color: #fff; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid #475569; }
+        
+        .control-panel { background: #1e293b; padding: 40px; border-radius: 12px; border: 1px solid #334155; }
+        .control-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #334155; }
+        .control-row:last-child { border-bottom: none; }
+        .control-label { color: #94a3b8; font-size: 0.95rem; }
+        .control-value { color: #3b82f6; font-weight: 600; font-family: 'DM Mono', monospace; }
+        .control-toggle { width: 48px; height: 26px; background: #3b82f6; border-radius: 13px; position: relative; }
+        .control-toggle::after { content: ''; position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; background: #fff; border-radius: 50%; }
+        
+        .features-section { padding: 100px 0; background: #1e293b; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-title p { color: #94a3b8; font-size: 1.1rem; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .feature-card { background: #0f172a; padding: 32px; border-radius: 8px; border: 1px solid #334155; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+        .feature-card p { color: #94a3b8; font-size: 0.95rem; }
+        
+        .comparison-section { padding: 100px 0; }
+        .comparison-table { width: 100%; border-collapse: collapse; }
+        .comparison-table th { padding: 16px; text-align: left; color: #94a3b8; font-weight: 500; border-bottom: 2px solid #334155; }
+        .comparison-table td { padding: 16px; border-bottom: 1px solid #334155; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .check { color: #22c55e; font-weight: 700; }
+        .cross { color: #ef4444; font-weight: 700; }
+        
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .btn-cta { background: #fff; color: #3b82f6; padding: 18px 48px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+        
+        footer { padding: 60px 0; background: #0f172a; text-align: center; color: #64748b; }
+        
+        @media (max-width: 900px) {
+            .hero-grid, .feature-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="nav">
+                <div class="logo">Privacy<span>Pro</span></div>
+                <a href="#demo" class="btn-control">Take Control</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <p class="hero-label">⚙️ FULL ADMINISTRATIVE CONTROL</p>
+                    <h1>
+                        <span>Your AI. Your Rules.</span><br>
+                        <span>Your Infrastructure.</span>
+                    </h1>
+                    <p class="hero-sub">Complete control over models, data, access, and deployment. Your IT team will love the flexibility. Your auditors will love the visibility.</p>
+                    <div class="hero-cta">
+                        <a href="#demo" class="btn-primary">Deploy Now</a>
+                        <a href="#features" class="btn-secondary">See All Controls</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="control-panel">
+                        <div style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">🎛️ Control Panel Preview</div>
+                        <div class="control-row">
+                            <span class="control-label">Data Residency</span>
+                            <span class="control-value">EU-West (Frankfurt)</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">Model Access</span>
+                            <span class="control-value">Internal Only</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">Audit Logging</span>
+                            <div class="control-toggle"></div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">SSO Enforcement</span>
+                            <div class="control-toggle"></div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">Data Retention</span>
+                            <span class="control-value">90 days</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">API Rate Limit</span>
+                            <span class="control-value">1000 req/min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Complete Control Stack</h2>
+                <p>Every aspect of your AI infrastructure under your command.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Model Selection</h3>
+                    <p>Choose from 50+ models. Llama, Mistral, Qwen. Fine-tune on your data. Swap anytime.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Data Residency</h3>
+                    <p>Deploy anywhere. AWS, GCP, Azure, on-prem. Your data stays where you put it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Access Control</h3>
+                    <p>Granular RBAC. SSO integration. Per-user quotas. Audit every action.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Monitoring</h3>
+                    <p>Real-time dashboards. Custom alerts. Usage analytics. Performance metrics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>API Access</h3>
+                    <p>Full REST API. Webhooks. Custom integrations. Build on top of our stack.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Backup & Recovery</h3>
+                    <p>Automated backups. Point-in-time recovery. Disaster recovery ready.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cloud AI vs Privacy Pro</h2>
+                <p>See what you're giving up with cloud AI.</p>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th style="color: #94a3b8;">Cloud AI (OpenAI, Anthropic)</th>
+                        <th style="color: #3b82f6;">Privacy Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Residency Control</td>
+                        <td><span class="cross">✗ No</span></td>
+                        <td><span class="check">✓ Full</span></td>
+                    </tr>
+                    <tr>
+                        <td>Model Selection</td>
+                        <td><span class="cross">✗ Vendor locked</span></td>
+                        <td><span class="check">✓ 50+ models</span></td>
+                    </tr>
+                    <tr>
+                        <td>Custom Fine-tuning</td>
+                        <td><span class="cross">✗ Limited</span></td>
+                        <td><span class="check">✓ Full control</span></td>
+                    </tr>
+                    <tr>
+                        <td>Deployment Location</td>
+                        <td><span class="cross">✗ Their servers</span></td>
+                        <td><span class="check">✓ Anywhere</span></td>
+                    </tr>
+                    <tr>
+                        <td>Audit Logs</td>
+                        <td><span class="cross">✗ Limited</span></td>
+                        <td><span class="check">✓ Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cost Predictability</td>
+                        <td><span class="cross">✗ Per-token</span></td>
+                        <td><span class="check">✓ Fixed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Take Control?</h2>
+            <p>Deploy in hours. Control everything. Never look back.</p>
+            <a href="#demo" class="btn-cta">Deploy Privacy Pro →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Privacy Pro. Complete Control. Complete Privacy.</p>
+        </div>
+    </footer>
+</body>
+</html>
